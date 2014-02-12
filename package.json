@@ -1,0 +1,35 @@
+{
+    "author" : "Mikhail Davydov <i@azproduction.ru>",
+    "description" : "",
+    "name" : "autopolyfiller",
+    "version" : "1.0.0",
+    "contributors" : [
+        {
+            "name": "Mikhail Davydov",
+            "email": "i@azproduction.ru"
+        }
+    ],
+    "engines" : {
+        "node": ">= 0.8.0"
+    },
+    "dependencies" : {
+        "acorn": "*",
+        "grasp-equery": "*",
+        "glob": "*"
+    },
+    "devDependencies" : {
+        "jshint": "2.1.3",
+        "mocha": "1.11.0",
+        "jscs": "1.0.0",
+        "istanbul": "0.1.39",
+        "chai": "*",
+        "mocha-istanbul": "*",
+        "coveralls": "*"
+    },
+    "scripts": {
+        "test" : "make validate",
+        "lint": "make lint",
+        "coverage": "make coverage",
+        "clean": "make clean"
+    }
+}

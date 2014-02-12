@@ -1,0 +1,5 @@
+test/
+.DS_Store
+lib-cov
+coverage.html
+html-report
