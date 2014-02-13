@@ -21,4 +21,9 @@ describe('autopolyfiller', function() {
         expect(matches).to.eql(['Promise']);
     });
 
+    it('excludes supported features', function () {
+        var matches = new Lookup('"".trim();Object.create();new Promise();').find(['IE 11', 'Chrome >= 31']);
+        expect(matches).to.eql(['Promise']);
+    });
+
 });

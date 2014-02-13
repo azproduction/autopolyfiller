@@ -15,7 +15,8 @@
     "dependencies" : {
         "acorn": "*",
         "grasp-equery": "*",
-        "glob": "*"
+        "glob": "*",
+        "autoprefixer": "*"
     },
     "devDependencies" : {
         "jshint": "2.1.3",
