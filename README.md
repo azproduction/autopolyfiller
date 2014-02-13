@@ -11,7 +11,7 @@
 
 This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills
 
-## Installation
+## Installation 
 
 `autopolyfiller` can be installed using `npm`:
 
