@@ -3,7 +3,7 @@
 ## Example
 
 ```js
-var query = require('grasp-equery').query;
+var query = require('grasp-equery').query.query;
 
 exports.name = 'Object.create';
 exports.test = function (ast) {

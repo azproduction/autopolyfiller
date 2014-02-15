@@ -1,3 +1,3 @@
-module.exports = process.env.POLYFILL_LOOKUP_COVERAGE ?
+module.exports = process.env.AUTOPOLIFILLER_COVERAGE ?
     require('./lib-cov') :
     require('./lib');

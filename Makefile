@@ -23,13 +23,13 @@ lib-cov: clean
 
 .PHONY: coverage
 coverage: lib-cov
-	POLYFILL_LOOKUP_COVERAGE=1 $(MOCHA) --reporter mocha-istanbul
+	AUTOPOLIFILLER_COVERAGE=1 $(MOCHA) --reporter mocha-istanbul
 	@echo
 	@echo Open html-report/index.html file in your browser
 
 .PHONY: coveralls
 coveralls: lib-cov
-	@POLYFILL_LOOKUP_COVERAGE=1 ISTANBUL_REPORTERS=lcovonly $(MOCHA) --reporter mocha-istanbul
+	@AUTOPOLIFILLER_COVERAGE=1 ISTANBUL_REPORTERS=lcovonly $(MOCHA) --reporter mocha-istanbul
 	@cat lcov.info | $(COVERALLS)
 	@rm -rf lib-cov lcov.info
 
