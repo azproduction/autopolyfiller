@@ -1,15 +1,15 @@
-# Special matchers
+# Polyfill matchers
 
 ## Example
 
 ```js
 var query = require('grasp-equery').query.query;
 
-exports.name = 'Object.create';
+/**
+ * @param {Object} ast
+ * @returns {String[]}
+ */
 exports.test = function (ast) {
-    return query('Object.create(_$)', ast).length > 0;
-};
-exports.support = {
-    'ie7': false
+    return query('Object.create(_$)', ast).length ? ['Object.create'] : [];
 };
 ```

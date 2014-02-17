@@ -2,7 +2,7 @@
     "excludeFiles": [
         ".git/**",
         "node_modules/**",
-        "data/**"
+        "benchmark/scan/assets/**"
     ],
 
     "requireCurlyBraces": ["if", "else", "for", "while", "do"],
