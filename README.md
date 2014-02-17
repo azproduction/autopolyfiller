@@ -4,7 +4,7 @@
 (https://npmjs.org/package/autopolyfiller)
 [![Build Status](https://travis-ci.org/azproduction/autopolyfiller.png?branch=master)]
 (https://travis-ci.org/azproduction/autopolyfiller)
-[![Coverage Status](https://coveralls.io/repos/azproduction/autopolyfiller/badge.png?branch=master)]
+[![Coverage Status](https://coveralls.io/repos/azproduction/autopolyfiller/badge.png?branch=master&)]
 (https://coveralls.io/r/azproduction/autopolyfiller)
 [![Dependency Status](https://gemnasium.com/azproduction/autopolyfiller.png)]
 (https://gemnasium.com/azproduction/autopolyfiller)
