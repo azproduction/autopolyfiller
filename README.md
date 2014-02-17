@@ -24,22 +24,34 @@ npm install autopolyfiller
 **All possible polyfills without browsers filtering**
 
 ```js
-var Lookup = require('autopolyfiller');
+var autopolyfiller = require('autopolyfiller');
 
-var code = new Lookup('"".trim();Object.create(null);');
-
-code.find();
-// ['String.prototype.trim', 'Object.create']
+autopolyfiller()
+.add('"".trim();')
+.polyfills;
+// ['String.prototype.trim']
 ```
 
 **Filtering using Autoprefixer-style [browser matchers](https://github.com/ai/autoprefixer#browsers)**
 
 ```js
-var Lookup = require('autopolyfiller');
+var autopolyfiller = require('autopolyfiller');
 
-var code = new Lookup('"".trim();Object.create();new Promise()');
+autopolyfiller('IE 11', 'Chrome >= 31')
+.add('"".trim();Object.create();new Promise()')
+.polyfills;
+// ['Promise']
+```
 
-code.find(['IE 11', 'Chrome >= 31']);
+**Default autoprefixer browsers*
+
+```js
+var autopolyfiller = require('autopolyfiller'),
+    autoprefixer = require('autopolyfiller');
+
+autopolyfiller(autoprefixer.default)
+.add('new Promise();')
+.polyfills;
 // ['Promise']
 ```
 
@@ -47,28 +59,25 @@ code.find(['IE 11', 'Chrome >= 31']);
 
 ```js
 var query = require('grasp-equery').query;
-var Lookup = require('autopolyfiller');
+var autopolyfiller = require('autopolyfiller');
 
-Lookup.use({
-    // Polyfill name
-    name: 'Object.newFeature',
-
+autopolyfiller.use({
     // AST tree pattern matching
     test: function (ast) {
-        return query('Object.newFeature(_$)', ast).length > 0;
+        return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
-
-    // Map of browsers that support this feature
     support: {
-        'chrome30': true
+        'Object.newFeature': ['chrome 20']
     }
 });
 
-var code = new Lookup('Object.newFeature()');
+autopolyfiller()
+.add('Object.create();Object.newFeature();');
+.polyfills;
+// ['Object.create', 'Object.newFeature']
 
-code.find();
-// ['Object.newFeature']
-
-code.find(['Chrome >= 30']);
+autopolyfiller('Chrome >= 20')
+.add('Object.create();Object.newFeature();');
+.polyfills;
 // []
 ```

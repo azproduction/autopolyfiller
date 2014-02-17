@@ -17,7 +17,8 @@
         "grasp-equery": "*",
         "glob": "*",
         "autoprefixer": "*",
-        "debug": "*"
+        "debug": "*",
+        "node.extend": "*"
     },
     "devDependencies" : {
         "jshint": "2.1.3",
