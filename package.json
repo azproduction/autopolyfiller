@@ -18,7 +18,8 @@
         "glob": "*",
         "autoprefixer": "*",
         "debug": "*",
-        "node.extend": "*"
+        "node.extend": "*",
+        "polyfill": "git://github.com/azproduction/polyfill.js.git"
     },
     "devDependencies" : {
         "jshint": "2.1.3",

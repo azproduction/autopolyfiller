@@ -21,7 +21,11 @@ npm install autopolyfiller
 
 ## Example
 
-**All possible polyfills without browsers filtering**
+```js
+var fixedCode = require('autopolyfiller')().add(code) + '\n' + code;
+```
+
+**List of polyfills without browsers filtering**
 
 ```js
 var autopolyfiller = require('autopolyfiller');

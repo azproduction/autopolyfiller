@@ -42,7 +42,7 @@ describe('polyfill-scan', function() {
             'Number.isNaN.apply(Number, NaN);' +
             'JSON.parse.call(JSON, "{}");'
         );
-        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Number.isNaN', 'JSON.parse']);
+        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Number.isNaN', 'JSON']);
     });
 
     it('scans for constructor polyfills', function () {
@@ -60,14 +60,18 @@ describe('polyfill-scan', function() {
         expect(polyfills).to.eql(['Promise', 'String.prototype.trim', 'Object.create']);
     });
 
-    it('uses custom matches', function () {
-        scan.use({
-            test: function (ast) {
-                return astQuery('new PewpewOlolo(_$)', ast).length ? ['PewpewOlolo'] : [];
-            }
+    describe('.use', function() {
+
+        it('uses custom matches', function () {
+            scan.use({
+                test: function (ast) {
+                    return astQuery('new PewpewOlolo(_$)', ast).length ? ['PewpewOlolo'] : [];
+                }
+            });
+            var polyfills = scan('new PewpewOlolo();');
+            expect(polyfills).to.eql(['PewpewOlolo']);
         });
-        var polyfills = scan('new PewpewOlolo();');
-        expect(polyfills).to.eql(['PewpewOlolo']);
+
     });
 
 });
