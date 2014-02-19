@@ -30,4 +30,22 @@ describe('autopolyfiller', function() {
         expect(polyfills).to.eql(['String.prototype.trim', 'Object.keys']);
     });
 
+    it('uses custom matchers and support', function () {
+        autopolyfiller.use({
+            test: function (ast) {
+                return ['PewPew.prototype.ololo'];
+            },
+            support: {
+                'PewPew.prototype.ololo': {
+                    'chrome 20': true
+                }
+            }
+        });
+
+        var polyfills = autopolyfiller('Chrome 20').add('"".ololo();').polyfills;
+
+        expect(polyfills).to.eql([]);
+    });
+
+
 });

@@ -1,7 +1,7 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var scan = require('../lib/polyfill-scan'),
+var scan = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-scan'),
     expect = require('chai').expect;
 
 describe('polyfill-scan', function() {
@@ -57,6 +57,16 @@ describe('polyfill-scan', function() {
     it('returns unique polyfills', function () {
         var polyfills = scan('new Promise();new Promise();"".trim();"".trim();Object.create();Object.create();');
         expect(polyfills).to.eql(['Promise', 'String.prototype.trim', 'Object.create']);
+    });
+
+    it('uses custom matches', function () {
+        scan.use({
+            test: function () {
+                return ['PewpewOlolo'];
+            }
+        });
+        var polyfills = scan('new PewpewOlolo();');
+        expect(polyfills).to.eql(['PewpewOlolo']);
     });
 
 });

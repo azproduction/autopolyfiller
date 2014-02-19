@@ -67,7 +67,9 @@ autopolyfiller.use({
         return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
     support: {
-        'Object.newFeature': ['chrome 20']
+        'Object.newFeature': {
+            'chrome 20': true
+        }
     }
 });
 
