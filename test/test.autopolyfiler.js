@@ -2,6 +2,7 @@
 /*jshint expr:true*/
 
 var autopolyfiller = require('..'),
+    astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
 
 describe('autopolyfiller', function() {
@@ -33,7 +34,7 @@ describe('autopolyfiller', function() {
     it('uses custom matchers and support', function () {
         autopolyfiller.use({
             test: function (ast) {
-                return ['PewPew.prototype.ololo'];
+                return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
             },
             support: {
                 'PewPew.prototype.ololo': {
@@ -46,6 +47,5 @@ describe('autopolyfiller', function() {
 
         expect(polyfills).to.eql([]);
     });
-
 
 });

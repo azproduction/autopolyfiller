@@ -2,6 +2,7 @@
 /*jshint expr:true*/
 
 var scan = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-scan'),
+    astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
 
 describe('polyfill-scan', function() {
@@ -61,8 +62,8 @@ describe('polyfill-scan', function() {
 
     it('uses custom matches', function () {
         scan.use({
-            test: function () {
-                return ['PewpewOlolo'];
+            test: function (ast) {
+                return astQuery('new PewpewOlolo(_$)', ast).length ? ['PewpewOlolo'] : [];
             }
         });
         var polyfills = scan('new PewpewOlolo();');
