@@ -43,7 +43,7 @@ autopolyfiller('IE 11', 'Chrome >= 31')
 // ['Promise']
 ```
 
-**Default autoprefixer browsers*
+**Default autoprefixer browsers**
 
 ```js
 var autopolyfiller = require('autopolyfiller'),
