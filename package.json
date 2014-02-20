@@ -19,7 +19,7 @@
         "autoprefixer": "*",
         "debug": "*",
         "node.extend": "*",
-        "polyfill": "git://github.com/azproduction/polyfill.js.git"
+        "polyfill": "git://github.com/jonathantneal/polyfill.git"
     },
     "devDependencies" : {
         "jshint": "2.1.3",

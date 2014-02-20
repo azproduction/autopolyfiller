@@ -19,7 +19,7 @@ clean:
 
 .PHONY: lib-cov
 lib-cov: clean
-	$(ISTANBUL) instrument --output lib-cov --no-compact --variable global.__coverage__ lib
+	$(ISTANBUL) instrument --complete-copy --output lib-cov --no-compact --variable global.__coverage__ lib
 
 .PHONY: coverage
 coverage: lib-cov

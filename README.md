@@ -71,9 +71,14 @@ autopolyfiller.use({
         return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
     support: {
-        'Object.newFeature': {
-            'chrome 20': true
-        }
+        // For chrome 29 fix Object.newFeature
+        'Chrome': [{
+            only: '29',
+            fill: 'Object.newFeature'
+        }]
+    },
+    polyfill: {
+        'Object.newFeature': 'Object.newFeature = function () {};'
     }
 });
 

@@ -42,7 +42,7 @@ describe('polyfill-scan', function() {
             'Number.isNaN.apply(Number, NaN);' +
             'JSON.parse.call(JSON, "{}");'
         );
-        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Number.isNaN', 'JSON']);
+        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Number.isNaN', 'Window.prototype.JSON']);
     });
 
     it('scans for constructor polyfills', function () {

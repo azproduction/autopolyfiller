@@ -1,0 +1,35 @@
+{
+	"Opera Mini": [{
+		"fill": "Promise"
+	}],
+	"Opera Mobile": [{
+        "fill": "Promise"
+    }],
+	"Opera": [{
+        "fill": "Promise"
+    }],
+	"Android": [{
+        "fill": "Promise"
+    }],
+	"BlackBerry": [{
+        "fill": "Promise"
+    }],
+	"Chrome iOS": [{
+        "fill": "Promise"
+    }],
+	"Safari iOS": [{
+        "fill": "Promise"
+    }],
+	"Chrome": [{
+        "fill": "Promise"
+    }],
+	"Internet Explorer": [{
+        "fill": "Promise"
+    }],
+	"Firefox": [{
+        "fill": "Promise"
+    }],
+	"Safari": [{
+        "fill": "Promise"
+    }]
+}

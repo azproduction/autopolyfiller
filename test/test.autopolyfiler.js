@@ -26,14 +26,13 @@ describe('autopolyfiller', function () {
         expect(polyfills).to.eql([]);
     });
 
-    it('[TODO] should contain all registered polyfills', function () {
-        // TODO support all polyfills in polyfill module
-//        var availablePolyfills = polyfill().sort(),
-//            requiredPolyfills = reduce.list().sort();
-//
-//        requiredPolyfills.forEach(function (polyfill) {
-//            expect(availablePolyfills).to.include(polyfill);
-//        });
+    it('should contain all required polyfills', function () {
+        var availablePolyfills = Object.keys(polyfill.source),
+            requiredPolyfills = reduce.list().sort();
+
+        requiredPolyfills.forEach(function (polyfill) {
+            expect(availablePolyfills).to.include(polyfill);
+        });
     });
 
     describe('.add', function () {
@@ -60,20 +59,19 @@ describe('autopolyfiller', function () {
                     return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
                 },
                 support: {
-                    'PewPew.prototype.ololo': {
-                        'chrome 20': true
-                    }
+                    'Chrome': [{
+                        'only': '19',
+                        'fill': 'PewPew.prototype.ololo'
+                    }]
                 },
                 polyfill: {
-                    'PewPew.prototype.ololo': function () {
-                        return 'PewPew.prototype.ololo = {};';
-                    }
+                    'PewPew.prototype.ololo': 'PewPew.prototype.ololo = {};'
                 }
             });
 
-            var polyfills = autopolyfiller('Chrome 20').add('"".ololo();').polyfills;
+            var polyfills = autopolyfiller('Chrome 19').add('"".ololo();').polyfills;
 
-            expect(polyfills).to.eql([]);
+            expect(polyfills).to.eql(['PewPew.prototype.ololo']);
         });
 
         it('ignores absent parameters', function () {
@@ -92,18 +90,17 @@ describe('autopolyfiller', function () {
                     return astQuery('__.test(_$)', ast).length ? ['PewPew.prototype.test'] : [];
                 },
                 support: {
-                    'PewPew.prototype.test': {
-                        'chrome 19': true
-                    }
+                    'Chrome': [{
+                        'only': '19',
+                        'fill': 'PewPew.prototype.test'
+                    }]
                 },
                 polyfill: {
-                    'PewPew.prototype.test': function () {
-                        return code;
-                    }
+                    'PewPew.prototype.test': code
                 }
             });
 
-            var polyfillsCode = autopolyfiller('Chrome 20').add('"".test();').toString();
+            var polyfillsCode = autopolyfiller('Chrome 19').add('"".test();').toString();
 
             expect(polyfillsCode).to.eql(code);
         });
