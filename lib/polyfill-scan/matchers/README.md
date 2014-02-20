@@ -3,7 +3,7 @@
 ## Example
 
 ```js
-var query = require('grasp-equery').query.query;
+var query = require('grasp-equery').query;
 
 /**
  * @param {Object} ast
