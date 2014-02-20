@@ -2,7 +2,8 @@
     "excludeFiles": [
         ".git/**",
         "node_modules/**",
-        "benchmark/scan/assets/**"
+        "benchmark/scan/assets/**",
+        "example_assets/index.browserify.js"
     ],
 
     "requireCurlyBraces": ["if", "else", "for", "while", "do"],

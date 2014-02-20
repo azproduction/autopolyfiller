@@ -40,3 +40,7 @@ travis: validate coveralls
 lint:
 	$(JSHINT) .
 	$(JSCS) .
+
+.PHONY: browserify
+browserify:
+	./node_modules/.bin/browserify example_assets/index.js | sed 's/fs.readdirSync/fs.readdirSync \&\& fs.readdirSync/' > ./example_assets/index.browserify.js

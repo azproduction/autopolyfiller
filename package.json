@@ -15,7 +15,6 @@
     "dependencies" : {
         "acorn": "*",
         "grasp-equery": "*",
-        "glob": "*",
         "autoprefixer": "*",
         "debug": "*",
         "node.extend": "*",
@@ -29,7 +28,8 @@
         "chai": "*",
         "mocha-istanbul": "*",
         "coveralls": "*",
-        "benchmark": "*"
+        "benchmark": "*",
+        "browserify": "*"
     },
     "scripts": {
         "test" : "make validate",

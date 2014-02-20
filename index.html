@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autopolyfiller</title>
+    <link rel="stylesheet" href="example_assets/index.css"/>
+</head>
+<body>
+    <header>
+        <h1>Autopolyfiller</h1>
+    </header>
+
+    <section>
+        <h2>
+            <label for="code">Code</label>
+        </h2>
+        <textarea id="code" placeholder="Your scripts" autocomplete="off">Object.assign.bind(Object, {}, {});
+"".trim();
+function timeout(time) {
+    return new Promise(function (fulfill) {
+        setTimeout(fulfill, time);
+    });
+}
+[{a: 1}, {b: 2}, {c: 3}].map(Object.keys);
+        </textarea>
+
+        <h2>
+            <label for="browsers">Browsers (optional)</label>
+        </h2>
+        <textarea id="browsers" class="_small" placeholder="Autoprefixer style list of browsers">&gt; 1%, last 2 versions, Firefox ESR, Opera 12.1</textarea>
+
+        <button id="generate" title="Generate"></button>
+
+        <h2>Required polyfills</h2>
+        <ul id="polyfills"></ul>
+
+    </section>
+
+    <a href="https://github.com/azproduction/autopolyfiller"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <script src="example_assets/index.browserify.js"></script>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20918182 = new Ya.Metrika({id:20918182, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/20918182" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</body>
+</html>

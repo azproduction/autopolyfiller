@@ -27,8 +27,8 @@ describe('polyfill-scan', function() {
     });
 
     it('scans for static method polyfills', function () {
-        var polyfills = scan('Object.create();');
-        expect(polyfills).to.eql(['Object.create']);
+        var polyfills = scan('Object.create();Object.keys');
+        expect(polyfills).to.eql(['Object.create', 'Object.keys']);
     });
 
     it('ignores deep expressions that mocks as static methods', function () {
