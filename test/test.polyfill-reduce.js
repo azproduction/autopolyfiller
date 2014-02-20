@@ -24,7 +24,6 @@ describe('polyfill-reduce', function() {
         expect(polyfills).to.eql([]);
     });
 
-
     describe('.list', function () {
 
         it('returns list of all required polyfills', function () {
