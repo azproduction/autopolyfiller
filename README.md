@@ -1,13 +1,6 @@
 # Autopolyfiller — Precise polyfills
 
-[![NPM Version](https://badge.fury.io/js/autopolyfiller.png)]
-(https://npmjs.org/package/autopolyfiller)
-[![Build Status](https://travis-ci.org/azproduction/autopolyfiller.png?branch=master)]
-(https://travis-ci.org/azproduction/autopolyfiller)
-[![Coverage Status](https://coveralls.io/repos/azproduction/autopolyfiller/badge.png?branch=master&)]
-(https://coveralls.io/r/azproduction/autopolyfiller)
-[![Dependency Status](https://gemnasium.com/azproduction/autopolyfiller.png)]
-(https://gemnasium.com/azproduction/autopolyfiller)
+[![NPM Version](https://badge.fury.io/js/autopolyfiller.png)](https://npmjs.org/package/autopolyfiller) [![Build Status](https://travis-ci.org/azproduction/autopolyfiller.png?branch=master)](https://travis-ci.org/azproduction/autopolyfiller) [![Coverage Status](https://coveralls.io/repos/azproduction/autopolyfiller/badge.png?branch=master&)](https://coveralls.io/r/azproduction/autopolyfiller) [![Dependency Status](https://gemnasium.com/azproduction/autopolyfiller.png)](https://gemnasium.com/azproduction/autopolyfiller)
 
 This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills
 
