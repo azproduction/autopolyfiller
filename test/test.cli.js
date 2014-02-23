@@ -16,7 +16,7 @@ describe('cli', function () {
     var stdout,
         stdin,
         stderr,
-        exit = process.exit;
+        exit;
 
     beforeEach(function () {
         stdout = new stream.MockWritableStream();
@@ -31,6 +31,9 @@ describe('cli', function () {
         };
         stdin = new stream.MockReadableStream();
         stdin.isTTY = true;
+        exit = function (status) {
+            exit.status = status;
+        };
     });
 
     afterEach(function () {
@@ -97,11 +100,54 @@ describe('cli', function () {
     });
 
     it('exit process with code 1 if content of input file is bad', function (done) {
-        done();
+        stderr.captureData();
+
+        new AutoPolyFillerCli({
+            stdin: stdin,
+            stdout: stdout,
+            stderr: stderr,
+            exit: exit,
+            argv: [
+                'node',
+                cliBin,
+                'test/fixtures/cli/c.coffee'
+            ]
+        }, function (error) {
+            setTimeout(function () {
+                expect(stderr.capturedData).to.match(/Error while adding file from/);
+                expect(exit.status).to.eql(1);
+                expect(error).to.be.instanceof(Error);
+                done();
+            }, 0);
+        });
     });
 
     it('exit process with code 1 if content of STDIN is bad', function (done) {
-        done();
+        stderr.captureData();
+        stdin.isTTY = false;
+
+        new AutoPolyFillerCli({
+            stdin: stdin,
+            stdout: stdout,
+            stderr: stderr,
+            exit: exit,
+            argv: [
+                'node',
+                cliBin
+            ]
+        }, function (error) {
+            setTimeout(function () {
+                expect(stderr.capturedData).to.match(/Error while adding file from STDIN/);
+                expect(exit.status).to.eql(1);
+                expect(error).to.be.instanceof(Error);
+                done();
+            }, 0);
+        });
+
+        setTimeout(function () {
+            stdin.emit('data', 'var var throw;');
+            stdin.emit('end');
+        }, 0);
     });
 
     describe('<glob|file ...>', function () {
@@ -286,11 +332,47 @@ describe('cli', function () {
     describe('-b, --browsers', function  () {
 
         it('reduces polyfills against required browsers', function (done) {
-            done();
+            stdout.captureData();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-b',
+                    'Chrome 30',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.be.empty;
+                done();
+            });
         });
 
         it('can be comma separated list of browsers', function (done) {
-            done();
+            stdout.captureData();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-b',
+                    'Explorer 8',
+                    'Opera 10',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/String.prototype.trim/);
+                expect(stdout.capturedData).to.match(/Object.keys/);
+                done();
+            });
         });
 
     });
