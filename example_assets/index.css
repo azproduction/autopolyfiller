@@ -32,6 +32,10 @@ h2 {
     font-weight: 200;
 }
 
+p {
+    font-family: "Helvetica Neue", "Helvetica", "Arial";
+}
+
 button {
     border: solid transparent 30px;
     border-bottom-width: 0;

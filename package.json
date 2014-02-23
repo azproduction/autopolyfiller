@@ -38,7 +38,8 @@
         "coveralls": "*",
         "benchmark": "*",
         "browserify": "*",
-        "mock-utf8-stream": "*"
+        "mock-utf8-stream": "*",
+        "uglify-js": "*"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"

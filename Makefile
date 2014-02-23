@@ -44,3 +44,4 @@ lint:
 .PHONY: browserify
 browserify:
 	./node_modules/.bin/browserify example_assets/index.js | sed 's/fs.readdirSync/fs.readdirSync \&\& fs.readdirSync/' > ./example_assets/index.browserify.js
+	./node_modules/.bin/uglifyjs ./example_assets/index.browserify.js -o ./example_assets/index.browserify.js
