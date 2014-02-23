@@ -1,4 +1,4 @@
-# Autopolyfiller
+# Autopolyfiller — Precise polyfills
 
 [![NPM Version](https://badge.fury.io/js/autopolyfiller.png)]
 (https://npmjs.org/package/autopolyfiller)
