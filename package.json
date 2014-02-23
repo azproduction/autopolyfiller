@@ -32,7 +32,8 @@
         "mocha-istanbul": "*",
         "coveralls": "*",
         "benchmark": "*",
-        "browserify": "*"
+        "browserify": "*",
+        "mock-utf8-stream": "*"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"

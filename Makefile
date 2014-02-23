@@ -7,7 +7,7 @@ COVERALLS = $(BIN)/coveralls
 
 .PHONY: test
 test:
-	$(MOCHA) -u bdd -R spec --recursive
+	$(MOCHA) -u bdd -R spec
 
 .PHONY: validate
 validate: lint test

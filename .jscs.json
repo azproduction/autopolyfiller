@@ -3,7 +3,8 @@
         ".git/**",
         "node_modules/**",
         "benchmark/scan/assets/**",
-        "example_assets/index.browserify.js"
+        "example_assets/index.browserify.js",
+        "test/fixtures/**"
     ],
 
     "requireCurlyBraces": ["if", "else", "for", "while", "do"],
