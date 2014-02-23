@@ -1,8 +1,8 @@
 {
     "name" : "autopolyfiller",
-    "description" : "Like Autoprefixer, but for JavaScript polyfills",
+    "description" : "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
     "keywords": ["polyfill", "polyfills", "dom", "ecmascript", "ecmascript5", "ecmascript6", "postprocessor"],
-    "version" : "1.0.2",
+    "version" : "1.0.3",
     "author" : "Mikhail Davydov <i@azproduction.ru>",
     "contributors" : [
         {
