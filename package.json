@@ -1,8 +1,8 @@
 {
-    "author" : "Mikhail Davydov <i@azproduction.ru>",
-    "description" : "",
     "name" : "autopolyfiller",
-    "version" : "1.0.1",
+    "description" : "Like Autoprefixer, but for JavaScript polyfills",
+    "version" : "1.0.2",
+    "author" : "Mikhail Davydov <i@azproduction.ru>",
     "contributors" : [
         {
             "name": "Mikhail Davydov",
@@ -18,7 +18,10 @@
         "autoprefixer": "*",
         "debug": "*",
         "node.extend": "*",
-        "polyfill": "git://github.com/jonathantneal/polyfill.git"
+        "polyfill": "git://github.com/jonathantneal/polyfill.git",
+        "commander": "2.1.0",
+        "globule": "*",
+        "mkdirp": "*"
     },
     "devDependencies" : {
         "jshint": "2.1.3",
@@ -30,6 +33,9 @@
         "coveralls": "*",
         "benchmark": "*",
         "browserify": "*"
+    },
+    "bin": {
+        "autopolyfiller": "./bin/autopolyfiller"
     },
     "scripts": {
         "test" : "make validate",

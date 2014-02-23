@@ -19,10 +19,18 @@ This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScr
 npm install autopolyfiller
 ```
 
+## CLI Example
+
+```
+$ autopolyfiller lib/**/*.js -b "Explorer 7, Chrome >= 10"
+$ cat lib/*.js | autopolyfiller
+```
+
 ## Example
 
 ```js
-var fixedCode = require('autopolyfiller')().add(code) + '\n' + code;
+// Polyfills + Code
+require('autopolyfiller')().add(code) + code;
 ```
 
 **List of polyfills without browsers filtering**
