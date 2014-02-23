@@ -2,7 +2,7 @@
     "name" : "autopolyfiller",
     "description" : "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
     "keywords": ["polyfill", "polyfills", "dom", "ecmascript", "ecmascript5", "ecmascript6", "postprocessor"],
-    "version" : "1.0.4",
+    "version" : "1.0.6",
     "author" : "Mikhail Davydov <i@azproduction.ru>",
     "contributors" : [
         {
@@ -10,6 +10,10 @@
             "email": "i@azproduction.ru"
         }
     ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/azproduction/autopolyfiller.git"
+    },
     "engines" : {
         "node": ">= 0.8.0"
     },
