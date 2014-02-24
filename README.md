@@ -4,6 +4,12 @@
 
 This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills
 
+How it works:
+
+ * Using AST matchers it scans your code and finds all polyfills
+ * If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
+ * It generates polyfills code which precisely fixes only required features
+
 ## Installation 
 
 `autopolyfiller` can be installed using `npm`:
