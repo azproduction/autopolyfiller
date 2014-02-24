@@ -10,6 +10,12 @@ How it works:
  * If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
  * It generates polyfills code which precisely fixes only required features
 
+It will not work if:
+
+ * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
+ * You doing something odd. Eg `Object['k' + 'eys']()`
+ 
+
 ## Installation 
 
 `autopolyfiller` can be installed using `npm`:
