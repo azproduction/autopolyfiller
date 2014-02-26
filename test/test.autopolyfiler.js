@@ -102,7 +102,7 @@ describe('autopolyfiller', function () {
 
             var polyfillsCode = autopolyfiller('Chrome 19').add('"".test();').toString();
 
-            expect(polyfillsCode).to.eql(code);
+            expect(polyfillsCode).to.have.string(code);
         });
 
         it('throws an error if required polyfill is not defined', function () {
@@ -115,6 +115,13 @@ describe('autopolyfiller', function () {
             expect(function () {
                 var code = autopolyfiller().add('"".undefinedPolyfill();').toString();
             }).to.throw(Error, /Unknown feature: PewPew.undefinedPolyfill/);
+        });
+
+        it('wraps code with conditional expression', function () {
+            var polyfills = autopolyfiller('IE 7').add('"".trim();').toString();
+
+            expect(polyfills).to.match(/String\.prototype\.trim/);
+            expect(polyfills).to.match(/!String\.prototype\.trim/);
         });
 
     });
