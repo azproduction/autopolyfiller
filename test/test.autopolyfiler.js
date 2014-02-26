@@ -3,6 +3,8 @@
 
 // Drop cache to reset polyfills
 var reduceFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce';
+var reduceDataFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce/data/index.json';
+delete require.cache[require.resolve(reduceDataFile)];
 delete require.cache[require.resolve(reduceFile)];
 delete require.cache[require.resolve('polyfill')];
 
