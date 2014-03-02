@@ -38,10 +38,10 @@ describe('polyfill-reduce', function() {
             reduce.support({
                 "Chrome": [{
                     "only": "29",
-                    "fill": "PewpewOlolo"
+                    "fill": "__PewpewOlolo"
                 }]
             });
-            var polyfills = reduce(['PewpewOlolo'], ['Chrome 30']);
+            var polyfills = reduce(['__PewpewOlolo'], ['Chrome 30']);
             expect(polyfills).to.eql([]);
         });
 
@@ -49,7 +49,7 @@ describe('polyfill-reduce', function() {
             reduce.support({
                 "ChromePewpew": [{
                     "only": "29",
-                    "fill": "PewpewOlolo"
+                    "fill": "__PewpewOlolo"
                 }]
             });
         });

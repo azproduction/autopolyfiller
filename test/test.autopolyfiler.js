@@ -4,19 +4,13 @@
 // Drop cache to reset polyfills
 var reduceFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce';
 
-// Wipe cache of /autopolyfiller/lib/
-Object.keys(require.cache).forEach(function (name) {
-    if (/\/autopolyfiller\/(lib|lib-cov)\//.test(name)) {
-        delete require.cache[name];
-    }
-});
-delete require.cache[require.resolve('polyfill')];
-
 var autopolyfiller = require('..'),
     reduce = require(reduceFile),
     polyfill = require('polyfill'),
     astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
+
+var reLocalPolyfills = /^__/;
 
 describe('autopolyfiller', function () {
 
@@ -37,7 +31,9 @@ describe('autopolyfiller', function () {
             requiredPolyfills = reduce.list().sort();
 
         requiredPolyfills.forEach(function (polyfill) {
-            expect(availablePolyfills).to.include(polyfill);
+            if (!reLocalPolyfills.test(polyfill)) {
+                expect(availablePolyfills).to.include(polyfill);
+            }
         });
     });
 
