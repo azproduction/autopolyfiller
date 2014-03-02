@@ -6,14 +6,34 @@ var wrap = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'l
 
 describe('polyfill-wrap', function() {
 
-    it('wraps code with expression', function () {
+    it('uses negative polyfill as expression if `polyfillName` is a prototype property', function () {
         var code = 'Array.prototype.every = function () {};',
-            condition = '!Array.prototype.every';
+            polyfillName = 'Array.prototype.every';
 
-        var wrappedCode = wrap(code, condition);
+        var wrappedCode = wrap(code, polyfillName);
 
-        expect(wrappedCode).to.match(/Array\.prototype\.every\s=\sfunction\s\(\)\s\{\};/);
+        expect(wrappedCode).to.match(/Array\.prototype\.every = function \(\) \{\};/);
         expect(wrappedCode).to.match(/!Array\.prototype\.every/);
+    });
+
+    it('uses typeof polyfill === "undefined" as expression if `polyfillName` is a single object', function () {
+        var code = 'Promise = function () {};',
+            polyfillName = 'Promise';
+
+        var wrappedCode = wrap(code, polyfillName);
+
+        expect(wrappedCode).to.match(/Promise = function \(\) \{\};/);
+        expect(wrappedCode).to.match(/typeof Promise === "undefined"/);
+    });
+
+    it('uses complex expression if `polyfillName` is a static method polyfill', function () {
+        var code = 'Object.keys = function () {};',
+            polyfillName = 'Object.keys';
+
+        var wrappedCode = wrap(code, polyfillName);
+
+        expect(wrappedCode).to.match(/Object.keys = function \(\) \{\};/);
+        expect(wrappedCode).to.match(/typeof Object === "undefined" || Object && !Object.keys/);
     });
 
 });
