@@ -32,7 +32,7 @@ $ cat lib/*.js | autopolyfiller
 
 ## Grunt & Glup tasks
 
- * [grunt-autopolyfiller](https://github.com/grunt-azproduction/) Grunt task for autopolyfiller.
+ * [grunt-autopolyfiller](https://github.com/azproduction/grunt-autopolyfiller/) - Grunt task for autopolyfiller.
  * glup-autopolyfiller - TODO.
 
 ## Example
