@@ -30,10 +30,10 @@ $ autopolyfiller lib/**/*.js -b "Explorer 7, Chrome >= 10"
 $ cat lib/*.js | autopolyfiller
 ```
 
-## Grunt & Glup tasks
+## Grunt & Gulp tasks
 
  * [grunt-autopolyfiller](https://github.com/azproduction/grunt-autopolyfiller/) - Grunt task for autopolyfiller.
- * glup-autopolyfiller - TODO.
+ * gulp-autopolyfiller - TODO.
 
 ## Example
 
