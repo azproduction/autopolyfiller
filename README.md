@@ -14,7 +14,6 @@ It will not work if:
 
  * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
  * You doing something odd. Eg `Object['k' + 'eys']()`
- 
 
 ## Installation 
 
@@ -30,6 +29,11 @@ npm install autopolyfiller
 $ autopolyfiller lib/**/*.js -b "Explorer 7, Chrome >= 10"
 $ cat lib/*.js | autopolyfiller
 ```
+
+## Grunt & Glup tasks
+
+ * [grunt-autopolyfiller](https://github.com/grunt-azproduction/) Grunt task for autopolyfiller.
+ * glup-autopolyfiller - TODO.
 
 ## Example
 
@@ -105,8 +109,3 @@ autopolyfiller('Chrome >= 20')
 .polyfills;
 // []
 ```
-
-## TODO
-
- * Grunt task
- * Glup task
