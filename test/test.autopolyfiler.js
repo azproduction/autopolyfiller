@@ -3,9 +3,13 @@
 
 // Drop cache to reset polyfills
 var reduceFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce';
-var reduceDataFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce/data/index.json';
-delete require.cache[require.resolve(reduceDataFile)];
-delete require.cache[require.resolve(reduceFile)];
+
+// Wipe cache of /autopolyfiller/lib/
+Object.keys(require.cache).forEach(function (name) {
+    if (/\/autopolyfiller\/(lib|lib-cov)\//.test(name)) {
+        delete require.cache[name];
+    }
+});
 delete require.cache[require.resolve('polyfill')];
 
 var autopolyfiller = require('..'),
