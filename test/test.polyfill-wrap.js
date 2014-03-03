@@ -36,4 +36,20 @@ describe('polyfill-wrap', function() {
         expect(wrappedCode).to.match(/typeof Object === "undefined" || Object && !Object.keys/);
     });
 
+    describe('.addWrapper', function() {
+        it('declares special polyfill wrapper', function () {
+            wrap.addWrapper({
+                '__PewpewOlolo': {
+                    before: '',
+                    after: ''
+                }
+            });
+
+            var code = '__PewpewOlolo = function () {};',
+                polyfillName = '__PewpewOlolo';
+
+            expect(wrap(code, polyfillName)).to.eql(code);
+        });
+    });
+
 });

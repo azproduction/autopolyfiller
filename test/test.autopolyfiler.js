@@ -55,7 +55,7 @@ describe('autopolyfiller', function () {
 
     describe('.use', function () {
 
-        it('registers matchers, support and polyfills', function () {
+        it('registers matchers, support, wrappers and polyfills', function () {
             autopolyfiller.use({
                 test: function (ast) {
                     return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
@@ -68,6 +68,12 @@ describe('autopolyfiller', function () {
                 },
                 polyfill: {
                     'PewPew.prototype.ololo': 'PewPew.prototype.ololo = {};'
+                },
+                wrapper: {
+                    'PewPew.prototype.ololo': {
+                        'before': 'if (!PewPew.prototype.ololo) {',
+                        'after': '}'
+                    }
                 }
             });
 
