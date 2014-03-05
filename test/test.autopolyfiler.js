@@ -51,6 +51,35 @@ describe('autopolyfiller', function () {
             expect(polyfills).to.eql(['String.prototype.trim', 'Object.keys']);
         });
 
+        it('scans polyfills for extra polyfills', function () {
+            var polyfills = autopolyfiller().add('Object.defineProperties();').polyfills;
+
+            expect(polyfills).to.eql(['Object.defineProperties', 'Object.defineProperty']);
+        });
+
+        it('scans polyfills for extra polyfills recursively', function () {
+            autopolyfiller.use({
+                test: function (ast) {
+                    return astQuery('__.recursively(_$)', ast).length ? ['PewPew.prototype.recursively'] : [];
+                },
+                support: {
+                    'Opera': [{
+                        'only': '11.5',
+                        'fill': 'PewPew.prototype.recursively'
+                    }]
+                },
+                polyfill: {
+                    'PewPew.prototype.recursively': 'Object.defineProperties(' +
+                        'PewPew.prototype, {' +
+                            'myTemporary: function(){}' +
+                        '}' +
+                    ');'
+                }
+            });
+            var polyfills = autopolyfiller('Opera 11.5').add('"".recursively();').polyfills;
+
+            expect(polyfills).to.eql(['PewPew.prototype.recursively', 'Object.defineProperties', 'Object.defineProperty']);
+        });
     });
 
     describe('.use', function () {
