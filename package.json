@@ -20,7 +20,7 @@
     "dependencies" : {
         "acorn": "~0.4.2",
         "grasp-equery": "~0.2.0",
-        "autoprefixer": "~1.0.20140213",
+        "autoprefixer": "1.1.x",
         "debug": "~0.7.4",
         "node.extend": "~1.0.9",
         "polyfill": "git://github.com/jonathantneal/polyfill.git",
