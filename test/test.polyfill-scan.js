@@ -55,6 +55,20 @@ describe('polyfill-scan', function() {
         expect(polyfills).to.eql([]);
     });
 
+    it('scans for global function polyfills', function () {
+        var polyfills = scan(
+            'window.btoa();' +
+            'window.btoa.call();' +
+
+            'atob();' +
+            'atob.apply();' +
+
+            'this.btoa();' +
+            'this.btoa.call();'
+        );
+        expect(polyfills).to.eql(['Window.prototype.base64']);
+    });
+
     it('returns unique polyfills', function () {
         var polyfills = scan('new Promise();new Promise();"".trim();"".trim();Object.create();Object.create();');
         expect(polyfills).to.eql(['Promise', 'String.prototype.trim', 'Object.create']);

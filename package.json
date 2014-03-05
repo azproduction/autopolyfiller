@@ -23,7 +23,7 @@
         "autoprefixer": "~1.0.20140213",
         "debug": "~0.7.4",
         "node.extend": "~1.0.9",
-        "polyfill": "git://github.com/azproduction/polyfill.git",
+        "polyfill": "git://github.com/jonathantneal/polyfill.git",
         "commander": "~2.1.0",
         "globule": "0.2.0",
         "mkdirp": "~0.3.5"
