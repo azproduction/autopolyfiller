@@ -18,15 +18,15 @@
         "node": ">= 0.8.0"
     },
     "dependencies" : {
-        "acorn": "*",
-        "grasp-equery": "*",
-        "autoprefixer": "*",
-        "debug": "*",
-        "node.extend": "*",
+        "acorn": "~0.4.2",
+        "grasp-equery": "~0.2.0",
+        "autoprefixer": "~1.0.20140213",
+        "debug": "~0.7.4",
+        "node.extend": "~1.0.9",
         "polyfill": "git://github.com/jonathantneal/polyfill.git",
-        "commander": "2.1.0",
-        "globule": "*",
-        "mkdirp": "*"
+        "commander": "~2.1.0",
+        "globule": "0.2.0",
+        "mkdirp": "~0.3.5"
     },
     "devDependencies" : {
         "jshint": "2.1.3",

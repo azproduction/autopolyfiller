@@ -55,7 +55,7 @@ describe('autopolyfiller', function () {
 
     describe('.use', function () {
 
-        it('registers matchers, support and polyfills', function () {
+        it('registers matchers, support, wrappers and polyfills', function () {
             autopolyfiller.use({
                 test: function (ast) {
                     return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
@@ -68,6 +68,12 @@ describe('autopolyfiller', function () {
                 },
                 polyfill: {
                     'PewPew.prototype.ololo': 'PewPew.prototype.ololo = {};'
+                },
+                wrapper: {
+                    'PewPew.prototype.ololo': {
+                        'before': 'if (!PewPew.prototype.ololo) {',
+                        'after': '}'
+                    }
                 }
             });
 
@@ -105,18 +111,6 @@ describe('autopolyfiller', function () {
             var polyfillsCode = autopolyfiller('Chrome 19').add('"".test();').toString();
 
             expect(polyfillsCode).to.have.string(code);
-        });
-
-        it('throws an error if required polyfill is not defined', function () {
-            autopolyfiller.use({
-                test: function (ast) {
-                    return astQuery('__.undefinedPolyfill(_$)', ast).length ? ['PewPew.undefinedPolyfill'] : [];
-                }
-            });
-
-            expect(function () {
-                var code = autopolyfiller().add('"".undefinedPolyfill();').toString();
-            }).to.throw(Error, /Unknown feature: PewPew.undefinedPolyfill/);
         });
 
         it('wraps code with conditional expression', function () {
