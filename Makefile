@@ -30,7 +30,7 @@ coverage: lib-cov
 .PHONY: coveralls
 coveralls: lib-cov
 	@AUTOPOLIFILLER_COVERAGE=1 ISTANBUL_REPORTERS=lcovonly $(MOCHA) --reporter mocha-istanbul
-	@cat lcov.info | $(COVERALLS)
+	-@cat lcov.info | $(COVERALLS)
 	@rm -rf lib-cov lcov.info
 
 .PHONY: travis
