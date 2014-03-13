@@ -10,6 +10,10 @@ describe('polyfill-code', function() {
         expect(code('Object.keys')).to.match(/Object\.keys/);
     });
 
+    it('lazily loads polyfills', function () {
+        expect(code('Window.prototype.requestAnimationFrame')).to.match(/requestAnimationFrame/);
+    });
+
     it('throws an error if required polyfill is not defined', function () {
         expect(function () {
             code('Object.pewpewOlolo');

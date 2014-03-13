@@ -6,5 +6,9 @@
     "Navigator.prototype.geolocation": {
         "before": "if (typeof navigator.geolocation === 'undefined') {\n",
         "after": "\n}\n"
+    },
+    "Window.prototype.requestAnimationFrame": {
+        "before": "",
+        "after": ""
     }
 }
