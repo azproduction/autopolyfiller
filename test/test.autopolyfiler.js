@@ -3,14 +3,14 @@
 
 // Drop cache to reset polyfills
 var reduceFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce';
-delete require.cache[require.resolve(reduceFile)];
-delete require.cache[require.resolve('polyfill')];
 
 var autopolyfiller = require('..'),
     reduce = require(reduceFile),
     polyfill = require('polyfill'),
     astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
+
+var reLocalPolyfills = /^__/;
 
 describe('autopolyfiller', function () {
 
@@ -31,7 +31,9 @@ describe('autopolyfiller', function () {
             requiredPolyfills = reduce.list().sort();
 
         requiredPolyfills.forEach(function (polyfill) {
-            expect(availablePolyfills).to.include(polyfill);
+            if (!reLocalPolyfills.test(polyfill)) {
+                expect(availablePolyfills).to.include(polyfill);
+            }
         });
     });
 
@@ -49,11 +51,40 @@ describe('autopolyfiller', function () {
             expect(polyfills).to.eql(['String.prototype.trim', 'Object.keys']);
         });
 
+        it('scans polyfills for extra polyfills', function () {
+            var polyfills = autopolyfiller().add('Object.defineProperties();').polyfills;
+
+            expect(polyfills).to.eql(['Object.defineProperties', 'Object.defineProperty']);
+        });
+
+        it('scans polyfills for extra polyfills recursively', function () {
+            autopolyfiller.use({
+                test: function (ast) {
+                    return astQuery('__.recursively(_$)', ast).length ? ['PewPew.prototype.recursively'] : [];
+                },
+                support: {
+                    'Opera': [{
+                        'only': '11.5',
+                        'fill': 'PewPew.prototype.recursively'
+                    }]
+                },
+                polyfill: {
+                    'PewPew.prototype.recursively': 'Object.defineProperties(' +
+                        'PewPew.prototype, {' +
+                            'myTemporary: function(){}' +
+                        '}' +
+                    ');'
+                }
+            });
+            var polyfills = autopolyfiller('Opera 11.5').add('"".recursively();').polyfills;
+
+            expect(polyfills).to.eql(['PewPew.prototype.recursively', 'Object.defineProperties', 'Object.defineProperty']);
+        });
     });
 
     describe('.use', function () {
 
-        it('registers matchers, support and polyfills', function () {
+        it('registers matchers, support, wrappers and polyfills', function () {
             autopolyfiller.use({
                 test: function (ast) {
                     return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
@@ -66,6 +97,12 @@ describe('autopolyfiller', function () {
                 },
                 polyfill: {
                     'PewPew.prototype.ololo': 'PewPew.prototype.ololo = {};'
+                },
+                wrapper: {
+                    'PewPew.prototype.ololo': {
+                        'before': 'if (!PewPew.prototype.ololo) {',
+                        'after': '}'
+                    }
                 }
             });
 
@@ -102,19 +139,14 @@ describe('autopolyfiller', function () {
 
             var polyfillsCode = autopolyfiller('Chrome 19').add('"".test();').toString();
 
-            expect(polyfillsCode).to.eql(code);
+            expect(polyfillsCode).to.have.string(code);
         });
 
-        it('throws an error if required polyfill is not defined', function () {
-            autopolyfiller.use({
-                test: function (ast) {
-                    return astQuery('__.undefinedPolyfill(_$)', ast).length ? ['PewPew.undefinedPolyfill'] : [];
-                }
-            });
+        it('wraps code with conditional expression', function () {
+            var polyfills = autopolyfiller('IE 7').add('"".trim();').toString();
 
-            expect(function () {
-                var code = autopolyfiller().add('"".undefinedPolyfill();').toString();
-            }).to.throw(Error, /Unknown feature: PewPew.undefinedPolyfill/);
+            expect(polyfills).to.match(/String\.prototype\.trim/);
+            expect(polyfills).to.match(/!String\.prototype\.trim/);
         });
 
     });

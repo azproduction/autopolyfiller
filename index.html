@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Autopolyfiller &mdash; Precise polyfills</title>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="http://azproduction.ru/autopolyfiller/images/favicon.ico"/>
+    <meta name="description" content="Autopolyfiller &mdash; Precise polyfills"/>
+    <meta property="og:title" content="Autopolyfiller &mdash; Precise polyfills"/>
+    <meta property="og:description" content="It scans your code and finds only required polyfills"/>
+    <meta property="og:image" content="http://azproduction.ru/autopolyfiller/images/autopolyfiller.jpg"/>
+    <meta property="og:type" content="website"/>
+
     <link rel="stylesheet" href="example_assets/index.css"/>
 </head>
 <body>
     <header>
-        <h1>Autopolyfiller &mdash; Precise polyfills</h1>
+        <h1 class="main-title"><img src="images/autopolyfiller.min.svg" class="main-title__image"/> Autopolyfiller &mdash; Precise polyfills</h1>
     </header>
 
     <section>
@@ -38,7 +45,17 @@ function timeout(time) {
         <p>Not yet implemented in demo mode, but you can install <a href="https://www.npmjs.org/package/autopolyfiller">Autopolyfiller</a> and try it yourself.</p>
 <pre><code>$ npm i autopolyfiller -g
 $ autopolyfiller js/**/*.js</code></pre>
+    </section>
 
+    <section class="social-share">
+        <script src="//yastatic.net/share/share.js" async></script>
+        <div class="yashare-auto-init"
+             data-yashareL10n="en"
+             data-yashareQuickServices="facebook,twitter,gplus"
+             data-yashareTheme="counter"
+             data-yashareDescription="It scans your code and finds only required polyfills"
+             data-yashareImage="http://azproduction.ru/autopolyfiller/images/autopolyfiller.jpg"
+        ></div>
     </section>
 
     <a href="https://github.com/azproduction/autopolyfiller"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>

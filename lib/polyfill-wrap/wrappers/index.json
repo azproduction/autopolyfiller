@@ -1,0 +1,14 @@
+{
+    "Window.prototype.base64": {
+        "before": "if (typeof window.atob === 'undefined' || typeof window.btoa === 'undefined') {\n",
+        "after": "\n}\n"
+    },
+    "Navigator.prototype.geolocation": {
+        "before": "if (typeof navigator.geolocation === 'undefined') {\n",
+        "after": "\n}\n"
+    },
+    "Window.prototype.requestAnimationFrame": {
+        "before": "",
+        "after": ""
+    }
+}

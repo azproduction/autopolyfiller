@@ -56,7 +56,7 @@ describe('cli', function () {
     });
 
     it('prints help if no files were passed', function (done) {
-        stdout.captureData();
+        stdout.startCapture();
 
         new AutoPolyFillerCli({
             stdin: stdin,
@@ -76,7 +76,7 @@ describe('cli', function () {
     });
 
     it('accepts STDIN', function (done) {
-        stdout.captureData();
+        stdout.startCapture();
         stdin.isTTY = false;
 
         new AutoPolyFillerCli({
@@ -100,7 +100,7 @@ describe('cli', function () {
     });
 
     it('exit process with code 1 if content of input file is bad', function (done) {
-        stderr.captureData();
+        stderr.startCapture();
 
         new AutoPolyFillerCli({
             stdin: stdin,
@@ -123,7 +123,7 @@ describe('cli', function () {
     });
 
     it('exit process with code 1 if content of STDIN is bad', function (done) {
-        stderr.captureData();
+        stderr.startCapture();
         stdin.isTTY = false;
 
         new AutoPolyFillerCli({
@@ -153,7 +153,7 @@ describe('cli', function () {
     describe('<glob|file ...>', function () {
 
         it('can be list of files', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -174,7 +174,7 @@ describe('cli', function () {
         });
 
         it('can be glob(s)', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -194,7 +194,7 @@ describe('cli', function () {
         });
 
         it('can be negative glob(s)', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -219,7 +219,7 @@ describe('cli', function () {
     describe('-v, --verbose', function () {
 
         it('prints verbose process log to stdout', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -245,7 +245,7 @@ describe('cli', function () {
         });
 
         it('silent if not passed', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -268,7 +268,7 @@ describe('cli', function () {
     describe('-o, --output <file>', function () {
 
         it('prints polyfills to STDOUT by default', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -287,7 +287,7 @@ describe('cli', function () {
         });
 
         it('prints polyfills to STDERR if passed', function (done) {
-            stderr.captureData();
+            stderr.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -332,7 +332,7 @@ describe('cli', function () {
     describe('-b, --browsers', function  () {
 
         it('reduces polyfills against required browsers', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,
@@ -353,7 +353,7 @@ describe('cli', function () {
         });
 
         it('can be comma separated list of browsers', function (done) {
-            stdout.captureData();
+            stdout.startCapture();
 
             new AutoPolyFillerCli({
                 stdin: stdin,

@@ -2,7 +2,7 @@
     "name" : "autopolyfiller",
     "description" : "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
     "keywords": ["polyfill", "polyfills", "dom", "ecmascript", "ecmascript5", "ecmascript6", "postprocessor"],
-    "version" : "1.0.6",
+    "version" : "1.0.10",
     "author" : "Mikhail Davydov <i@azproduction.ru>",
     "contributors" : [
         {
@@ -18,15 +18,16 @@
         "node": ">= 0.8.0"
     },
     "dependencies" : {
-        "acorn": "*",
-        "grasp-equery": "*",
-        "autoprefixer": "*",
-        "debug": "*",
-        "node.extend": "*",
+        "acorn": "~0.4.2",
+        "grasp-equery": "~0.2.0",
+        "autoprefixer": "1.1.x",
+        "debug": "~0.7.4",
+        "node.extend": "~1.0.9",
         "polyfill": "git://github.com/jonathantneal/polyfill.git",
-        "commander": "2.1.0",
-        "globule": "*",
-        "mkdirp": "*"
+        "commander": "~2.1.0",
+        "globule": "0.2.0",
+        "mkdirp": "~0.3.5",
+        "semver": "~2.2.1"
     },
     "devDependencies" : {
         "jshint": "2.1.3",
@@ -39,7 +40,8 @@
         "benchmark": "*",
         "browserify": "*",
         "mock-utf8-stream": "*",
-        "uglify-js": "*"
+        "uglify-js": "*",
+        "glob": "~3.2.9"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"
@@ -48,6 +50,7 @@
         "test" : "make validate",
         "lint": "make lint",
         "coverage": "make coverage",
-        "clean": "make clean"
+        "clean": "make clean",
+        "benchmark": "node ./benchmark/scan"
     }
 }

@@ -4,6 +4,17 @@
 
 This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills
 
+How it works:
+
+ * Using AST matchers it scans your code and finds all polyfills
+ * If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
+ * It generates polyfills code which precisely fixes only required features
+
+It will not work if:
+
+ * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
+ * You doing something odd. Eg `Object['k' + 'eys']()`
+
 ## Installation 
 
 `autopolyfiller` can be installed using `npm`:
@@ -18,6 +29,11 @@ npm install autopolyfiller
 $ autopolyfiller lib/**/*.js -b "Explorer 7, Chrome >= 10"
 $ cat lib/*.js | autopolyfiller
 ```
+
+## Grunt & Gulp tasks
+
+ * [grunt-autopolyfiller](https://github.com/azproduction/grunt-autopolyfiller/) - Grunt task for autopolyfiller.
+ * [gulp-autopolyfiller](https://github.com/azproduction/gulp-autopolyfiller/) - Gulp task for autopolyfiller.
 
 ## Example
 
@@ -93,8 +109,3 @@ autopolyfiller('Chrome >= 20')
 .polyfills;
 // []
 ```
-
-## TODO
-
- * Grunt task
- * Glup task
