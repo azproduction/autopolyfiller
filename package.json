@@ -40,7 +40,8 @@
         "benchmark": "*",
         "browserify": "*",
         "mock-utf8-stream": "*",
-        "uglify-js": "*"
+        "uglify-js": "*",
+        "glob": "~3.2.9"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"
@@ -49,6 +50,7 @@
         "test" : "make validate",
         "lint": "make lint",
         "coverage": "make coverage",
-        "clean": "make clean"
+        "clean": "make clean",
+        "benchmark": "node ./benchmark/scan"
     }
 }
