@@ -15,6 +15,11 @@ It will not work if:
  * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
  * You doing something odd. Eg `Object['k' + 'eys']()`
 
+Todo:
+
+ * Scan for square brackets expressions. Eg `Object['keys']()` #1
+ * Scan for padded (by `this` or `window`) expressions. Eg `window.Object['keys']()` #2
+
 ## Installation 
 
 `autopolyfiller` can be installed using `npm`:
