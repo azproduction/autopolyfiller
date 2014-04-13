@@ -17,8 +17,8 @@ It will not work if:
 
 Todo:
 
- * Scan for square brackets expressions. Eg `Object['keys']()` #1
- * Scan for padded (by `this` or `window`) expressions. Eg `window.Object['keys']()` #2
+ * Scan for square brackets expressions. Eg `Object['keys']()` [#3](https://github.com/azproduction/autopolyfiller/issues/3)
+ * Scan for padded (by `this` or `window`) expressions. Eg `window.Object['keys']()` [#4](https://github.com/azproduction/autopolyfiller/issues/4)
 
 ## Installation 
 
