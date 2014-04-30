@@ -105,12 +105,12 @@ autopolyfiller.use({
 });
 
 autopolyfiller()
-.add('Object.create();Object.newFeature();');
+.add('Object.create();Object.newFeature();')
 .polyfills;
 // ['Object.create', 'Object.newFeature']
 
 autopolyfiller('Chrome >= 20')
-.add('Object.create();Object.newFeature();');
+.add('Object.create();Object.newFeature();')
 .polyfills;
 // []
 ```
