@@ -58,13 +58,10 @@ describe('polyfill-expression-fold', function() {
             property: {
                 type: 'CallExpression',
                 callee: {
-                    "type": "Identifier",
-                    "name": "log"
+                    type: 'Identifier',
+                    name: 'log'
                 },
-                arguments: [{
-                    "type": "Literal",
-                    "value": "Hello world!"
-                }]
+                arguments: []
             }
         };
 
