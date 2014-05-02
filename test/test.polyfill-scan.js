@@ -61,9 +61,9 @@ describe('polyfill-scan', function() {
         expect(polyfills).to.eql(['Promise']);
     });
 
-    it('ignores deep expressions that mocks as constructor', function () {
-        var polyfills = scan('new My.Promise();new My.Own.Promise();');
-        expect(polyfills).to.eql([]);
+    it('scans for padded constructor polyfills', function () {
+        var polyfills = scan('new window.Promise();');
+        expect(polyfills).to.eql(['Promise']);
     });
 
     it('scans for global function polyfills', function () {
