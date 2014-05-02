@@ -6,6 +6,7 @@ var scan = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'l
     expect = require('chai').expect;
 
 describe('polyfill-scan', function() {
+    /* jshint maxstatements: 20 */
 
     it('scans for prototype-based polyfills', function () {
         var polyfills = scan('"".trim();');
@@ -34,6 +35,16 @@ describe('polyfill-scan', function() {
     it('ignores deep expressions that mocks as static methods', function () {
         var polyfills = scan('My.Object.create();Oh.My.Object.create();');
         expect(polyfills).to.eql([]);
+    });
+
+    it('finds padded static methods', function () {
+        var polyfills = scan('window.Object.create();');
+        expect(polyfills).to.eql(['Object.create']);
+    });
+
+    it('finds square brackets static methods', function () {
+        var polyfills = scan('window["Object"]["create"]();(JSON["parse"]);');
+        expect(polyfills).to.eql(['Object.create', 'Window.prototype.JSON']);
     });
 
     it('scans for static method polyfills that called by call, apply or bind', function () {
