@@ -2,13 +2,15 @@
 
 [![NPM Version](https://badge.fury.io/js/autopolyfiller.png)](https://npmjs.org/package/autopolyfiller) [![Build Status](https://travis-ci.org/azproduction/autopolyfiller.png?branch=master)](https://travis-ci.org/azproduction/autopolyfiller) [![Coverage Status](https://coveralls.io/repos/azproduction/autopolyfiller/badge.png?branch=master&)](https://coveralls.io/r/azproduction/autopolyfiller) [![Dependency Status](https://gemnasium.com/azproduction/autopolyfiller.png)](https://gemnasium.com/azproduction/autopolyfiller)
 
-This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills
+This is like [Autoprefixer](https://github.com/ai/autoprefixer), but for JavaScript polyfills. It scans your code and applies only required polyfills. 
 
-How it works:
+Assume you code is `Object.keys(window)`. `Object.keys` polyfill is required to run it [in any browser](http://kangax.github.io/es5-compat-table/#Object.keys) (include IE7). On the other hand this code can be executed on iOS 7 Safari without any polyfills. AutoPolyfiller knows about ES5 and ES6 features and their support in browsers. It can help you to write cutting-edge JavaScript without thinking about ES shims and shivs.
 
- * Using AST matchers it scans your code and finds all polyfills
- * If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
- * It generates polyfills code which precisely fixes only required features
+How it works. Step by step:
+
+ 1. Using AST matchers it scans your code and finds all polyfills
+ 2. If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
+ 3. It generates polyfills code, using "polyfills database", which precisely fixes only required features
 
 It will not work if:
 
