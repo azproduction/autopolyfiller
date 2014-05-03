@@ -1,5 +1,5 @@
 /*global describe, it, beforeEach, afterEach*/
-/*jshint expr:true*/
+/*jshint expr:true, maxstatements:50*/
 
 var join = require('path').join,
     format = require('util').format,

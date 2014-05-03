@@ -15,11 +15,6 @@ It will not work if:
  * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
  * You doing something odd. Eg `Object['k' + 'eys']()`
 
-Todo:
-
- * Scan for square brackets expressions. Eg `Object['keys']()` [#3](https://github.com/azproduction/autopolyfiller/issues/3)
- * Scan for padded (by `this` or `window`) expressions. Eg `window.Object['keys']()` [#4](https://github.com/azproduction/autopolyfiller/issues/4)
-
 ## Installation 
 
 `autopolyfiller` can be installed using `npm`:

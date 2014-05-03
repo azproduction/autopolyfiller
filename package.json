@@ -2,7 +2,7 @@
     "name" : "autopolyfiller",
     "description" : "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
     "keywords": ["polyfill", "polyfills", "dom", "ecmascript", "ecmascript5", "ecmascript6", "postprocessor"],
-    "version" : "1.0.10",
+    "version" : "1.1.0",
     "author" : "Mikhail Davydov <i@azproduction.ru>",
     "contributors" : [
         {
@@ -19,7 +19,6 @@
     },
     "dependencies" : {
         "acorn": "~0.4.2",
-        "grasp-equery": "~0.2.0",
         "autoprefixer": "1.1.x",
         "debug": "~0.7.4",
         "node.extend": "~1.0.9",
@@ -43,7 +42,8 @@
         "browserify": "*",
         "mock-utf8-stream": "*",
         "uglify-js": "*",
-        "glob": "~3.2.9"
+        "glob": "~3.2.9",
+        "grasp-equery": "~0.2.0"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"
