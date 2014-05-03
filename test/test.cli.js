@@ -364,8 +364,7 @@ describe('cli', function () {
                     'node',
                     cliBin,
                     '-b',
-                    'Explorer 8',
-                    'Opera 10',
+                    'Explorer 8, Opera 10',
                     'test/fixtures/cli/**/*.js'
                 ]
             }, function () {
@@ -377,4 +376,96 @@ describe('cli', function () {
 
     });
 
+    describe('-x, --exclude <names>', function  () {
+
+        it('ignores listed polyfills', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-x',
+                    'String.prototype.trim',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/Object.keys/);
+                done();
+            });
+        });
+
+        it('can be comma separated list of polyfills', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-x',
+                    'String.prototype.trim, Object.keys',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.be.empty;
+                done();
+            });
+        });
+
+    });
+
+    describe('-i, --include <polyfills>', function  () {
+
+        it('adds extra polyfills', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-i',
+                    'Promise',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/Promise/);
+                done();
+            });
+        });
+
+        it('can be comma separated list of polyfills', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-i',
+                    'Promise, Array.prototype.map',
+                    'test/fixtures/cli/**/*.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/Promise/);
+                expect(stdout.capturedData).to.match(/Array\.prototype\.map/);
+                done();
+            });
+        });
+
+    });
 });
