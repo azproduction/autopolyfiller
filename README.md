@@ -76,6 +76,20 @@ autopolyfiller(autoprefixer.default)
 // ['Promise']
 ```
 
+**Excluding/including polyfills**
+
+```js
+var autopolyfiller = require('autopolyfiller'),
+    autoprefixer = require('autopolyfiller');
+
+autopolyfiller()
+.exclude(['Promise'])
+.include(['String.prototype.trim'])
+.add('new My.Promise();')
+.polyfills;
+// ['String.prototype.trim']
+```
+
 **Custom polyfill matchers**
 
 ```js
@@ -100,12 +114,12 @@ autopolyfiller.use({
 });
 
 autopolyfiller()
-.add('Object.create();Object.newFeature();');
+.add('Object.create();Object.newFeature();')
 .polyfills;
 // ['Object.create', 'Object.newFeature']
 
 autopolyfiller('Chrome >= 20')
-.add('Object.create();Object.newFeature();');
+.add('Object.create();Object.newFeature();')
 .polyfills;
 // []
 ```
