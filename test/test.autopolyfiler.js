@@ -151,4 +151,62 @@ describe('autopolyfiller', function () {
 
     });
 
+    describe('.include', function () {
+
+        it('includes extra polyfills', function () {
+            var polyfills = autopolyfiller()
+                .include(['Promise'])
+                .add('"".trim();')
+                .polyfills;
+
+            expect(polyfills).to.eql(['Promise', 'String.prototype.trim']);
+        });
+
+        it('filters against list of excluded polyfills', function () {
+            var polyfills = autopolyfiller()
+                .exclude(['Promise'])
+                .include(['Promise'])
+                .add('"".trim();')
+                .exclude(['String.prototype.trim'])
+                .polyfills;
+
+            expect(polyfills).to.eql([]);
+        });
+
+        it('adds unique polyfills', function () {
+            var polyfills = autopolyfiller()
+                .include(['String.prototype.trim', 'String.prototype.trim'])
+                .add('"".trim();')
+                .polyfills;
+
+            expect(polyfills).to.eql(['String.prototype.trim']);
+        });
+
+    });
+
+    describe('.exclude', function () {
+
+        it('adds exclued polyfills to the `excluedPolyfills` list', function () {
+            var excluedPolyfills = autopolyfiller()
+                .exclude(['Promise'])
+                .add('"".trim();')
+                .excluedPolyfills;
+
+            expect(excluedPolyfills).to.eql(['Promise']);
+        });
+
+        it('removes non required polyfills', function () {
+            var polyfills = autopolyfiller()
+                .exclude(['Promise'])
+                .include(['Promise', 'Object.keys'])
+                .exclude(['Object.keys', 'Array.prototype.map'])
+                .add('"".trim();[].map(function () {});')
+                .exclude(['String.prototype.trim'])
+                .polyfills;
+
+            expect(polyfills).to.eql([]);
+        });
+
+    });
+
 });

@@ -81,6 +81,20 @@ autopolyfiller(autoprefixer.default)
 // ['Promise']
 ```
 
+**Excluding/including polyfills**
+
+```js
+var autopolyfiller = require('autopolyfiller'),
+    autoprefixer = require('autopolyfiller');
+
+autopolyfiller()
+.exclude(['Promise'])
+.include(['String.prototype.trim'])
+.add('new My.Promise();')
+.polyfills;
+// ['String.prototype.trim']
+```
+
 **Custom polyfill matchers**
 
 ```js
