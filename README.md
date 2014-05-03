@@ -10,7 +10,12 @@ How it works. Step by step:
 
  1. Using AST matchers it scans your code and finds all polyfills
  2. If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
- 3. It generates polyfills code, using "polyfills database", which precisely fixes only required features
+ 3. It generates polyfills code, using [polyfills database](https://github.com/jonathantneal/polyfill), which precisely fixes only required features
+
+Limitations:
+
+ * Right now it supports only safe and cross-browser [polyfiis from ES5](https://github.com/jonathantneal/polyfill), but you can add your own (see examples).
+ * It can have a false-positives for some cases. For instance, autopolyfiller thinks that `$('div').map()` is call of `Array.prototype.map`. But you can exclude false-positives (see examples).
 
 It will not work if:
 

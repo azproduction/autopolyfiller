@@ -21,10 +21,9 @@ describe('polyfill-scan', function() {
     it('scans for prototype-based polyfills that called by call, apply or bind', function () {
         var polyfills = scan(
             '"".trim.call(" 1 ");' +
-            '"".repeat.apply("1", [4]);' +
             '[].some.bind([], function () {});'
         );
-        expect(polyfills).to.eql(['String.prototype.trim', 'String.prototype.repeat', 'Function.prototype.bind', 'Array.prototype.some']);
+        expect(polyfills).to.eql(['String.prototype.trim', 'Function.prototype.bind', 'Array.prototype.some']);
     });
 
     it('scans for static method polyfills', function () {
@@ -50,10 +49,9 @@ describe('polyfill-scan', function() {
     it('scans for static method polyfills that called by call, apply or bind', function () {
         var polyfills = scan(
             'Object.create.bind(null);' +
-            'Number.isNaN.apply(Number, NaN);' +
             'JSON.parse.call(JSON, "{}");'
         );
-        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Number.isNaN', 'Window.prototype.JSON']);
+        expect(polyfills).to.eql(['Function.prototype.bind', 'Object.create', 'Window.prototype.JSON']);
     });
 
     it('scans for constructor polyfills', function () {
