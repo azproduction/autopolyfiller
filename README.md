@@ -8,7 +8,7 @@ Assume you code is `Object.keys(window)`. `Object.keys` polyfill is required to 
 
 How it works. Step by step:
 
- 1. Using AST matchers it scans your code and finds all polyfills
+ 1. Using AST matchers, it scans your code and finds all polyfills
  2. If target browsers are specified, then it reduces the list of polyfills according to the "feature database"
  3. It generates polyfills code, using [polyfills database](https://github.com/jonathantneal/polyfill), which precisely fixes only required features
 
@@ -19,8 +19,8 @@ Limitations:
 
 It will not work if:
 
- * You `eval` code with polyfills. Eg `eval('Object.keys(this)')`
- * You doing something odd. Eg `Object['k' + 'eys']()`
+ * You are `eval`ing code with polyfills. Eg `eval('Object.keys(this)')`
+ * You are doing something odd. Eg `Object['k' + 'eys']()`
 
 ## Installation 
 
