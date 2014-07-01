@@ -43,7 +43,8 @@
         "mock-utf8-stream": "*",
         "uglify-js": "*",
         "glob": "~3.2.9",
-        "grasp-equery": "~0.2.0"
+        "grasp-equery": "~0.2.0",
+        "codeclimate-test-reporter": "~0.0.3"
     },
     "bin": {
         "autopolyfiller": "./bin/autopolyfiller"

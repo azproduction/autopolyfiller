@@ -4,6 +4,7 @@ ISTANBUL = $(BIN)/istanbul
 JSHINT = $(BIN)/jshint
 JSCS = $(BIN)/jscs
 COVERALLS = $(BIN)/coveralls
+CODECLIMATE = $(BIN)/codeclimate
 
 .PHONY: test
 test:
@@ -27,14 +28,15 @@ coverage: lib-cov
 	@echo
 	@echo Open html-report/index.html file in your browser
 
-.PHONY: coveralls
-coveralls: lib-cov
+.PHONY: coverage_push
+coverage_push: lib-cov
 	@AUTOPOLIFILLER_COVERAGE=1 ISTANBUL_REPORTERS=lcovonly $(MOCHA) --reporter mocha-istanbul
 	-@cat lcov.info | $(COVERALLS)
+	-@cat lcov.info | $(CODECLIMATE)
 	@rm -rf lib-cov lcov.info
 
 .PHONY: travis
-travis: validate coveralls
+travis: validate coverage_push
 
 .PHONY: lint
 lint:
