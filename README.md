@@ -110,7 +110,7 @@ autopolyfiller.use({
         return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
     support: {
-        // For chrome 29 fix Object.newFeature
+        // For chrome 29 only - fix Object.newFeature
         'Chrome': [{
             only: '29',
             fill: 'Object.newFeature'
