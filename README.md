@@ -129,7 +129,7 @@ autopolyfiller.use({
     // polyfill's name to generate condition's code:
     wrapper: {
         'Object.newFeature': {
-            'before': 'if (!(newFeature in Object)) {',
+            'before': 'if (!("newFeature" in Object)) {',
             'after': '}'
         }
     }
@@ -143,7 +143,7 @@ autopolyfiller()
 autopolyfiller()
 .add('Object.newFeature();')
 .toString();
-// if (!(newFeature in Object)) {
+// if (!("newFeature" in Object)) {
 // Object.newFeature = function () {};
 // }
 
