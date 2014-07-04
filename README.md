@@ -106,18 +106,32 @@ var autopolyfiller = require('autopolyfiller');
 
 autopolyfiller.use({
     // AST tree pattern matching
+    // It may "grep" multiply polyfills
     test: function (ast) {
         return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
+    
+    // Your polyfills code
+    polyfill: {
+        'Object.newFeature': 'Object.newFeature = function () {};'
+    },
+    
+    // This feature is not available in
     support: {
-        // For chrome 29 only - fix Object.newFeature
+        // For chrome 29 only apply Object.newFeature polyfill
         'Chrome': [{
             only: '29',
             fill: 'Object.newFeature'
         }]
     },
-    polyfill: {
-        'Object.newFeature': 'Object.newFeature = function () {};'
+    
+    // This is optional. By default autopolyfiller will use
+    // polyfill's name to generate condition's code:
+    wrapper: {
+        'Object.newFeature': {
+            'before': 'if (!(newFeature in Object)) {',
+            'after': '}'
+        }
     }
 });
 
@@ -125,6 +139,13 @@ autopolyfiller()
 .add('Object.create();Object.newFeature();')
 .polyfills;
 // ['Object.create', 'Object.newFeature']
+
+autopolyfiller()
+.add('Object.newFeature();')
+.toString();
+// if (!(newFeature in Object)) {
+// Object.newFeature = function () {};
+// }
 
 autopolyfiller('Chrome >= 20')
 .add('Object.create();Object.newFeature();')
