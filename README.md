@@ -87,8 +87,7 @@ autopolyfiller(autoprefixer.default)
 **Excluding/including polyfills**
 
 ```js
-var autopolyfiller = require('autopolyfiller'),
-    autoprefixer = require('autopolyfiller');
+var autopolyfiller = require('autopolyfiller');
 
 autopolyfiller()
 .exclude(['Promise'])
@@ -98,7 +97,7 @@ autopolyfiller()
 // ['String.prototype.trim']
 ```
 
-**Custom polyfill matchers**
+**Adding your own polyfills**
 
 ```js
 var query = require('grasp-equery').query;
@@ -116,7 +115,7 @@ autopolyfiller.use({
         'Object.newFeature': 'Object.newFeature = function () {};'
     },
     
-    // This feature is not available in <list of browsers>
+    // This list means "apply this feature to the <list of browsers>"
     // For more examples see https://github.com/jonathantneal/polyfill/blob/master/agent.js.json
     support: {
         // For chrome 29 only apply Object.newFeature polyfill
