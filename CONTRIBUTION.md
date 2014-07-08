@@ -30,6 +30,7 @@ but expect it be declined by the maintainer.
  - Name your polyfill
  - Write a AST matcher
  - Write a wrapper (optional)
+ - Specify a set of invalid browsers
  - Write tests
 
 ### 1. Write a polyfill's code
@@ -91,10 +92,31 @@ function matcher(ast) {
 
 ### 4. Write a conditional wrapper
 
-If condition for your polyfill is complex, you can write a wrapper.
+If a condition for polyfill is complex, you can write a wrapper. This condition specifies when polyfill shoul be applied.
 
 ```js
 /* BEFORE PART */if (!String.prototype.trim) {
                      // There will be your polyfill's code
 /* AFTER  PART */} 
 ```
+
+### 5. Set of invalid browsers
+
+ - http://caniuse.com/
+ - http://kangax.github.io/compat-table/es5/
+
+```js
+{
+    'Safari': [{
+        only: '4',
+        fill: 'String.prototype.trim'
+    }],
+    'Internet Explorer': [{
+     		 min: '6',
+     		 max: '8',
+        fill: 'String.prototype.trim'
+    }]
+}
+```
+
+For more examples see https://github.com/jonathantneal/polyfill/blob/master/agent.js.json
