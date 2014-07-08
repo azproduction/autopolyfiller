@@ -36,7 +36,7 @@ but expect it be declined by the maintainer.
 
  - It should be tested
  - Idially should have 100% code coverage
- - It should not condition wrapper
+ - It should be without a condition wrapper
  - It should be roboust (full spec coverage is welcome)
 
 **Examples**
