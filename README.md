@@ -152,3 +152,18 @@ autopolyfiller('Chrome >= 20')
 .polyfills;
 // []
 ```
+
+## Handling polyfills issues
+
+Right now Autopolyfiller aggreagates existing sources of polyfills. If you have any issues related to a polyfill code itself, please, add an issue or a pull request to the [jonathantneal/polyfill](https://github.com/jonathantneal/polyfill).
+
+Here is how to temporary workaround, while your issue being resolved:
+```js
+var autopolyfiller = require('autopolyfiller');
+
+autopolyfiller.use({
+    polyfill: {
+        'Function.prototype.bind': 'fixed code (!Function.prototype.bind)'
+    }
+});
+```
