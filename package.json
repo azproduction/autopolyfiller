@@ -1,59 +1,67 @@
 {
-    "name" : "autopolyfiller",
-    "description" : "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
-    "keywords": ["polyfill", "polyfills", "dom", "ecmascript", "ecmascript5", "ecmascript6", "postprocessor"],
-    "version" : "1.1.1",
-    "author" : "Mikhail Davydov <i@azproduction.ru>",
-    "contributors" : [
-        {
-            "name": "Mikhail Davydov",
-            "email": "i@azproduction.ru"
-        }
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/azproduction/autopolyfiller.git"
-    },
-    "engines" : {
-        "node": ">= 0.8.0"
-    },
-    "dependencies" : {
-        "acorn": "~0.4.2",
-        "autoprefixer": "1.1.x",
-        "debug": "~0.7.4",
-        "node.extend": "~1.0.9",
-        "polyfill": "git://github.com/jonathantneal/polyfill.git",
-        "commander": "~2.1.0",
-        "globule": "0.2.0",
-        "mkdirp": "~0.3.5",
-        "semver": "~2.2.1",
-        "estraverse": "1.5.0",
-        "quotemeta": "0.0.0"
-    },
-    "devDependencies" : {
-        "jshint": "2.1.3",
-        "mocha": "1.11.0",
-        "jscs": "1.0.0",
-        "istanbul": "0.1.39",
-        "chai": "*",
-        "mocha-istanbul": "*",
-        "coveralls": "*",
-        "benchmark": "*",
-        "browserify": "*",
-        "mock-utf8-stream": "*",
-        "uglify-js": "*",
-        "glob": "~3.2.9",
-        "grasp-equery": "~0.2.0",
-        "codeclimate-test-reporter": "~0.0.3"
-    },
-    "bin": {
-        "autopolyfiller": "./bin/autopolyfiller"
-    },
-    "scripts": {
-        "test" : "make validate",
-        "lint": "make lint",
-        "coverage": "make coverage",
-        "clean": "make clean",
-        "benchmark": "node ./benchmark/scan"
+  "name": "autopolyfiller",
+  "description": "Precise polyfills. Like Autoprefixer, but for JavaScript polyfills",
+  "keywords": [
+    "polyfill",
+    "polyfills",
+    "dom",
+    "ecmascript",
+    "ecmascript5",
+    "ecmascript6",
+    "postprocessor"
+  ],
+  "version": "1.1.1",
+  "author": "Mikhail Davydov <i@azproduction.ru>",
+  "contributors": [
+    {
+      "name": "Mikhail Davydov",
+      "email": "i@azproduction.ru"
     }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/azproduction/autopolyfiller.git"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "acorn": "~0.4.2",
+    "autoprefixer": "1.1.x",
+    "debug": "~0.7.4",
+    "node.extend": "~1.0.9",
+    "polyfill": "git://github.com/jonathantneal/polyfill.git",
+    "commander": "~2.1.0",
+    "globule": "0.2.0",
+    "mkdirp": "~0.3.5",
+    "semver": "~2.2.1",
+    "estraverse": "1.5.0",
+    "quotemeta": "0.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "*",
+    "browserify": "*",
+    "chai": "*",
+    "codeclimate-test-reporter": "~0.0.3",
+    "coveralls": "*",
+    "glob": "~3.2.9",
+    "grasp-equery": "~0.2.0",
+    "istanbul": "0.1.39",
+    "jscs": "1.0.0",
+    "jshint": "2.1.3",
+    "mocha": "1.11.0",
+    "mocha-istanbul": "*",
+    "mock-utf8-stream": "*",
+    "uglify-js": "*"
+  },
+  "bin": {
+    "autopolyfiller": "./bin/autopolyfiller"
+  },
+  "scripts": {
+    "test": "make validate",
+    "lint": "make lint",
+    "coverage": "make coverage",
+    "clean": "make clean",
+    "benchmark": "node ./benchmark/scan"
+  }
 }

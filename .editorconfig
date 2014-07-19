@@ -11,3 +11,6 @@ insert_final_newline = true
 
 [GNUmakefile]
 indent_style = tab
+
+[package.json]
+indent_size = 2
