@@ -43,7 +43,7 @@ describe('polyfill-wrap', function() {
         var wrappedCode = wrap(code, polyfillName);
 
         expect(wrappedCode).to.match(/Object.keys = function \(\) \{\};/);
-        expect(wrappedCode).to.match(/typeof Object === "undefined" || Object && !Object.keys/);
+        expect(wrappedCode).to.match(/typeof Object !== "undefined" && !Object.keys/);
     });
 
     describe('.addWrapper', function() {
