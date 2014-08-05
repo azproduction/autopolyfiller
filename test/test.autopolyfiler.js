@@ -54,7 +54,7 @@ describe('autopolyfiller', function () {
         it('scans polyfills for extra polyfills', function () {
             var polyfills = autopolyfiller().add('Object.defineProperties();').polyfills;
 
-            expect(polyfills).to.eql(['Object.defineProperties', 'Object.defineProperty']);
+            expect(polyfills).to.eql(['Object.defineProperty', 'Object.defineProperties']);
         });
 
         it('scans polyfills for extra polyfills recursively', function () {
@@ -78,7 +78,7 @@ describe('autopolyfiller', function () {
             });
             var polyfills = autopolyfiller('Opera 11.5').add('"".recursively();').polyfills;
 
-            expect(polyfills).to.eql(['PewPew.prototype.recursively', 'Object.defineProperties', 'Object.defineProperty']);
+            expect(polyfills).to.eql(['Object.defineProperty', 'Object.defineProperties', 'PewPew.prototype.recursively']);
         });
     });
 
