@@ -2,10 +2,9 @@
 /*jshint expr:true, maxstatements:50*/
 
 var join = require('path').join,
-    format = require('util').format,
     fs = require('fs'),
     stream = require('mock-utf8-stream'),
-    cliJs = join(__dirname, '..', (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib'), 'cli.js'),
+    cliJs = join(__dirname, '..', 'lib', 'cli.js'),
     cliBin = join(__dirname, '..', 'bin', 'autopolyfiller'),
     AutoPolyFillerCli = require(cliJs),
     expect = require('chai').expect;
@@ -329,7 +328,7 @@ describe('cli', function () {
 
     });
 
-    describe('-b, --browsers', function  () {
+    describe('-b, --browsers', function () {
 
         it('reduces polyfills against required browsers', function (done) {
             stdout.startCapture();
@@ -376,7 +375,7 @@ describe('cli', function () {
 
     });
 
-    describe('-x, --exclude <names>', function  () {
+    describe('-x, --exclude <names>', function () {
 
         it('ignores listed polyfills', function (done) {
             stdout.startCapture();

@@ -1,10 +1,10 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var code = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-code'),
+var code = require('../lib/polyfill-code'),
     expect = require('chai').expect;
 
-describe('polyfill-code', function() {
+describe('polyfill-code', function () {
 
     it('returns polyfill code', function () {
         expect(code('Object.keys')).to.match(/Object\.keys/);
@@ -20,7 +20,7 @@ describe('polyfill-code', function() {
         }).to.throw(Error, /Unknown feature: Object.pewpewOlolo/);
     });
 
-    describe('.addSource', function() {
+    describe('.addSource', function () {
 
         it('defines new polyfills code', function () {
             var polyfillCode = '__MyPolyfill = function () {}';

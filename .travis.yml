@@ -13,9 +13,4 @@ branches:
   only:
     - master
 
-addons:
-  code_climate:
-    repo_token:
-      secure: "I6nIGimRlTBdjBOezKnICxNp+vxrSaD+4EArJPlbWBoM9tc4T5iKniGLQ7L5WAghaNxzr2P3EJ0m/xMU/A6ug/ZaOXgUVoOuC6CqeZ7fOtzW/2buNAlZSdpyoG05htXdrawMKlWepwSDie27edahOiYMcPmDfALRozGX7YPcrB8="
-
-script: make travis
+script: npm test && npm run coverals

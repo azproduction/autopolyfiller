@@ -1,14 +1,14 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var reduce = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce'),
+var reduce = require('../lib/polyfill-reduce'),
     autoprefixer = require('autoprefixer'),
     expect = require('chai').expect;
 
-describe('polyfill-reduce', function() {
+describe('polyfill-reduce', function () {
 
     it('excludes supported polyfills', function () {
-        var polyfills = reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['IE 11', 'Chrome >= 31']);
+        var polyfills = reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['IE 11', 'Chrome 31']);
         expect(polyfills).to.eql(['Promise']);
     });
 
