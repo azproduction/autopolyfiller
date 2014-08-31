@@ -2,6 +2,7 @@
     "excludeFiles": [
         ".git/**",
         "node_modules/**",
+        "coverage/**",
         "benchmark/scan/assets/**",
         "example_assets/index.browserify.js",
         "test/fixtures/**"
@@ -33,8 +34,16 @@
         "checkRedundantParams": true
     },
 
-    "requireSpacesInFunctionExpression": {
+    "requireSpacesInAnonymousFunctionExpression": {
         "beforeOpeningCurlyBrace": true,
+        "beforeOpeningRoundBrace": true
+    },
+
+    "requireSpacesInNamedFunctionExpression": {
+        "beforeOpeningCurlyBrace": true
+    },
+
+    "disallowSpacesInNamedFunctionExpression": {
         "beforeOpeningRoundBrace": true
     }
 }

@@ -1,11 +1,11 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var scan = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-scan'),
+var scan = require('../lib/polyfill-scan'),
     astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
 
-describe('polyfill-scan', function() {
+describe('polyfill-scan', function () {
     /* jshint maxstatements: 20 */
 
     it('scans for prototype-based polyfills', function () {
@@ -83,7 +83,7 @@ describe('polyfill-scan', function() {
         expect(polyfills).to.eql(['Promise', 'String.prototype.trim', 'Object.create']);
     });
 
-    describe('.use', function() {
+    describe('.use', function () {
 
         it('uses custom matches', function () {
             scan.use({

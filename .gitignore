@@ -1,6 +1,4 @@
 .idea
 node_modules
 .DS_Store
-lib-cov
-coverage.html
-html-report
+coverage

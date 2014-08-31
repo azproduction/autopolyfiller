@@ -3,3 +3,4 @@ data
 benchmark/scan/assets
 example_assets/index.browserify.js
 test/fixtures
+coverage

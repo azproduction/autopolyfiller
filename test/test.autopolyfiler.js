@@ -1,12 +1,7 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-// Drop cache to reset polyfills
-var reduceFile = '../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-reduce';
-
 var autopolyfiller = require('..'),
-    reduce = require(reduceFile),
-    polyfill = require('polyfill'),
     astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
 
@@ -24,17 +19,6 @@ describe('autopolyfiller', function () {
         var polyfills = autopolyfiller(['IE 11', 'Chrome >= 31']).add('"".trim();').polyfills;
 
         expect(polyfills).to.eql([]);
-    });
-
-    it('should contain all required polyfills', function () {
-        var availablePolyfills = Object.keys(polyfill.source),
-            requiredPolyfills = reduce.list().sort();
-
-        requiredPolyfills.forEach(function (polyfill) {
-            if (!reLocalPolyfills.test(polyfill)) {
-                expect(availablePolyfills).to.include(polyfill);
-            }
-        });
     });
 
     describe('.add', function () {

@@ -1,10 +1,10 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var wrap = require('../' + (process.env.AUTOPOLIFILLER_COVERAGE ? 'lib-cov' : 'lib') + '/polyfill-wrap'),
+var wrap = require('../lib/polyfill-wrap'),
     expect = require('chai').expect;
 
-describe('polyfill-wrap', function() {
+describe('polyfill-wrap', function () {
 
     it('uses negative polyfill as expression if `polyfillName` is a prototype property', function () {
         var code = 'Array.prototype.every = function () {};',
@@ -46,7 +46,7 @@ describe('polyfill-wrap', function() {
         expect(wrappedCode).to.match(/typeof Object !== "undefined" && !Object.keys/);
     });
 
-    describe('.addWrapper', function() {
+    describe('.addWrapper', function () {
         it('declares special polyfill wrapper', function () {
             wrap.addWrapper({
                 '__PewpewOlolo': {
