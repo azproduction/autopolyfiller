@@ -48,6 +48,7 @@
     "mocha": "~1.11.0",
     "jscs": "~1.4.5",
     "istanbul": "~0.2.11",
+    "codeclimate-test-reporter": "~0.0.3",
     "chai": "*",
     "coveralls": "*",
     "husky": "~0.5.1"
@@ -58,7 +59,7 @@
   "scripts": {
     "test": "jshint . && jscs . && mocha -R spec",
     "coverage": "istanbul cover node_modules/.bin/_mocha --report html -- -R spec",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls",
+    "coverage_push": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && cat ./coverage/lcov.info | codeclimate",
     "precommit": "npm test",
     "prepush": "npm test",
     "benchmark": "node ./benchmark/scan"
