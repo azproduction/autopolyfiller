@@ -13,4 +13,4 @@ branches:
   only:
     - master
 
-script: npm test && npm run coverals
+script: npm test && npm run coverage_push
