@@ -10,7 +10,7 @@
     "ecmascript6",
     "postprocessor"
   ],
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Mikhail Davydov <i@azproduction.ru>",
   "contributors": [
     {
