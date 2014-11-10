@@ -2,7 +2,7 @@
 /*jshint expr:true*/
 
 var reduce = require('../lib/polyfill-reduce'),
-    autoprefixer = require('autoprefixer'),
+    browsersData = require('autoprefixer-core/data/browsers'),
     expect = require('chai').expect;
 
 describe('polyfill-reduce', function () {
@@ -13,13 +13,13 @@ describe('polyfill-reduce', function () {
     });
 
     it('ignores undefined browsers', function () {
-        autoprefixer.data.browsers.mychrome = {
+        browsersData.mychrome = {
             prefix: "-webkit-",
             versions: [7, 6.1, 6, 5.1, 5, 4, 3.2, 3.1],
             popularity: [1.11296, 0.815661, 0.602217, 0.930006, 0.274428, 0.114345, 0.008692, 0]
         };
         var polyfills = reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['MyChrome 11']);
-        delete autoprefixer.data.browsers.mychrome;
+        delete browsersData.mychrome;
 
         expect(polyfills).to.eql([]);
     });

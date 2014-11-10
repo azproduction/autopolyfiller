@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "acorn": "~0.4.2",
-    "autoprefixer": "1.1.x",
+    "autoprefixer-core": "~3.1.1",
     "debug": "~0.7.4",
     "node.extend": "~1.0.9",
     "commander": "~2.1.0",
@@ -59,7 +59,7 @@
   "scripts": {
     "test": "jshint . && jscs . && mocha -R spec",
     "coverage": "istanbul cover node_modules/.bin/_mocha --report html -- -R spec",
-    "coverage_push": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && cat ./coverage/lcov.info | codeclimate",
+    "coverage_push": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && cat ./coverage/lcov.info | codeclimate || true",
     "precommit": "npm test",
     "prepush": "npm test",
     "benchmark": "node ./benchmark/scan"
