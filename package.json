@@ -34,7 +34,7 @@
     "globule": "0.2.0",
     "mkdirp": "~0.3.5",
     "semver": "~2.2.1",
-    "autopolyfiller-stable": "~1.0.1"
+    "autopolyfiller-stable": "~1.0.2"
   },
   "devDependencies": {
     "benchmark": "*",
