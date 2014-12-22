@@ -97,6 +97,18 @@ autopolyfiller()
 // ['String.prototype.trim']
 ```
 
+**Using custom parser**
+
+```js
+var autopolyfiller = require('autopolyfiller');
+
+autopolyfiller()
+.withParser('acorn@0.11.0', {ecmaVersion: 6})
+.add('array.map(x => x * x)')
+.polyfills;
+// ['Array.prototype.map']
+```
+
 **Adding your own polyfills**
 
 ```js

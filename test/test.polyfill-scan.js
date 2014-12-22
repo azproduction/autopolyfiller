@@ -2,6 +2,7 @@
 /*jshint expr:true*/
 
 var scan = require('../lib/polyfill-scan'),
+    mockParser = require('./fixtures/parser'),
     astQuery = require('grasp-equery').query,
     expect = require('chai').expect;
 
@@ -81,6 +82,21 @@ describe('polyfill-scan', function () {
     it('returns unique polyfills', function () {
         var polyfills = scan('new Promise();new Promise();"".trim();"".trim();Object.create();Object.create();');
         expect(polyfills).to.eql(['Promise', 'String.prototype.trim', 'Object.create']);
+    });
+
+    it('uses custom parser', function () {
+        var polyfills = scan('array.map(x => x * x)', mockParser);
+        expect(polyfills).to.eql(['Array.prototype.map']);
+    });
+
+    it('provides custom parser options', function () {
+        expect(function () {
+            scan('array.map(x => x * x)', mockParser, 42);
+        }).to.throw(Error);
+
+        expect(function () {
+            scan('array.map(x => x * x)', mockParser, {});
+        }).to.not.throw(Error);
     });
 
     describe('.use', function () {

@@ -193,4 +193,28 @@ describe('autopolyfiller', function () {
 
     });
 
+    describe('.withParser', function () {
+        it('overriders default parser and parser options', function () {
+            var myParser = {
+                parse: function () {
+
+                }
+            };
+
+            var myParserOptions = {};
+
+            var instance = autopolyfiller()
+                .withParser(myParser, myParserOptions);
+
+            expect(instance.parser).to.eql(myParser);
+            expect(instance.parserOptions).to.eql(myParserOptions);
+        });
+
+        it('throws in case of invalid parser', function () {
+            expect(function () {
+                autopolyfiller().withParser({});
+            }).to.throw(Error);
+        });
+    });
+
 });
