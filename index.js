@@ -1,4 +1,6 @@
-var scan = require('./lib/polyfill-scan'),
+var acorn = require('acorn'),
+    assert = require('assert'),
+    scan = require('./lib/polyfill-scan'),
     reduce = require('./lib/polyfill-reduce'),
     wrap = require('./lib/polyfill-wrap'),
     code = require('./lib/polyfill-code');
@@ -16,6 +18,7 @@ var stablePolyfills = require('autopolyfiller-stable');
  * new AutoPolyFiller({
  *     browsers: ['IE 11', 'Chrome >= 31']
  * })
+ * .withParser(require('esprima-fb'))
  * .exclude(['Object.create'])
  * .include(['Array.prototype.map'])
  * .add('"".trim();Object.create();new Promise();')
@@ -26,6 +29,8 @@ function AutoPolyFiller(options) {
     this.browsers = options.browsers;
     this.polyfills = [];
     this.excluedPolyfills = [];
+    this.parserOptions = void 0;
+    this.parser = acorn;
 }
 
 AutoPolyFiller.prototype = {
@@ -37,7 +42,7 @@ AutoPolyFiller.prototype = {
      * @private
      */
     _scan: function (code) {
-        var polyfills = scan(code);
+        var polyfills = scan(code, this.parser, this.parserOptions);
 
         // Do not reduce if no browsers
         if (this.browsers && this.browsers.length === 0) {
@@ -144,6 +149,25 @@ AutoPolyFiller.prototype = {
         // Filter ignored polyfills
         this.polyfills = this.polyfills
             .filter(this._isPolyfillIncluded.bind(this));
+
+        return this;
+    },
+
+    /**
+     * Overrides default parser
+     *
+     * @param {Object} parser
+     * @param {Object} parser.parse
+     * @param {Object} [parserOptions]
+     * @returns {AutoPolyFiller}
+     */
+    withParser: function (parser, parserOptions) {
+        this.parserOptions = parserOptions;
+
+        if (parser) {
+            assert(typeof parser.parse === 'function', 'parser should have a `parse` method');
+            this.parser = parser;
+        }
 
         return this;
     }

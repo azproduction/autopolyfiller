@@ -467,4 +467,52 @@ describe('cli', function () {
         });
 
     });
+
+    describe('-p, --parser <parser>', function  () {
+        it('overrides existing parser', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-v',
+                    '-p',
+                    'acorn',
+                    'test/fixtures/cli_parser/es5.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/Array\.prototype\.map/);
+                done();
+            });
+        });
+    });
+
+    describe('-P, --parser-options <parser-options>', function  () {
+        it('overrides parser options', function (done) {
+            stdout.startCapture();
+
+            new AutoPolyFillerCli({
+                stdin: stdin,
+                stdout: stdout,
+                stderr: stderr,
+                exit: exit,
+                argv: [
+                    'node',
+                    cliBin,
+                    '-v',
+                    '-P',
+                    '{"ecmaVersion":6}',
+                    'test/fixtures/cli_parser/es6.js'
+                ]
+            }, function () {
+                expect(stdout.capturedData).to.match(/Array\.prototype\.map/);
+                done();
+            });
+        });
+    });
 });
