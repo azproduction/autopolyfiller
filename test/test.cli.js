@@ -363,7 +363,7 @@ describe('cli', function () {
                     'node',
                     cliBin,
                     '-b',
-                    'Explorer 8, Opera 10',
+                    'Explorer 8, Opera 12',
                     'test/fixtures/cli/**/*.js'
                 ]
             }, function () {

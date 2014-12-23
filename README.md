@@ -61,7 +61,7 @@ autopolyfiller()
 // ['String.prototype.trim']
 ```
 
-**Filtering using Autoprefixer-style [browser matchers](https://github.com/ai/autoprefixer#browsers)**
+**Filtering using Autoprefixer-style [browser matchers](https://github.com/ai/browserslist#queries)**
 
 ```js
 var autopolyfiller = require('autopolyfiller');

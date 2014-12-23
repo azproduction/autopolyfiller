@@ -2,7 +2,7 @@
 /*jshint expr:true*/
 
 var reduce = require('../lib/polyfill-reduce'),
-    browsersData = require('autoprefixer-core/data/browsers'),
+    browserslist = require('browserslist'),
     expect = require('chai').expect;
 
 describe('polyfill-reduce', function () {
@@ -13,15 +13,25 @@ describe('polyfill-reduce', function () {
     });
 
     it('ignores undefined browsers', function () {
-        browsersData.mychrome = {
-            prefix: "-webkit-",
-            versions: [7, 6.1, 6, 5.1, 5, 4, 3.2, 3.1],
-            popularity: [1.11296, 0.815661, 0.602217, 0.930006, 0.274428, 0.114345, 0.008692, 0]
+        browserslist.data.mychrome = {
+            name: 'mychrome',
+            released: ['37', '38', '39'],
+            versions: ['37', '38', '39', '40']
         };
-        var polyfills = reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['MyChrome 11']);
-        delete browsersData.mychrome;
+        var polyfills = reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['mychrome 39']);
+        delete browserslist.data.mychrome;
 
         expect(polyfills).to.eql([]);
+    });
+
+    it('throws if browser or version is undefined', function () {
+        expect(function () {
+            reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['mychrome 39']);
+        }).to.throw();
+
+        expect(function () {
+            reduce(['Promise', 'String.prototype.trim', 'Object.create'], ['Opera 1']);
+        }).to.throw();
     });
 
     describe('.list', function () {
