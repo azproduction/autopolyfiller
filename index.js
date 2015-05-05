@@ -3,9 +3,11 @@ var acorn = require('acorn'),
     scan = require('./lib/polyfill-scan'),
     reduce = require('./lib/polyfill-reduce'),
     wrap = require('./lib/polyfill-wrap'),
+    minimatch = require('minimatch'),
     code = require('./lib/polyfill-code');
 
-var stablePolyfills = require('autopolyfiller-stable');
+var stablePolyfills = require('autopolyfiller-stable'),
+    polyfillNames = Object.keys(stablePolyfills.polyfill);
 
 /**
  *
@@ -121,6 +123,18 @@ AutoPolyFiller.prototype = {
     include: function (polyfills) {
         this.polyfills = this.polyfills
             .concat(polyfills)
+
+            // If any of the patterns contain '*', add all of the matching
+            // polyfills
+            .reduce(function (polyfills, polyfill) {
+                if (polyfill.indexOf('*') > -1) {
+                    var matches = polyfillNames.filter(function(name) {
+                        return minimatch(name, polyfill);
+                    });
+                    return polyfills.concat(matches);
+                }
+                return polyfills.push(polyfill), polyfills;
+            }, [])
 
             // Filter ignored polyfills
             .filter(this._isPolyfillIncluded.bind(this))
