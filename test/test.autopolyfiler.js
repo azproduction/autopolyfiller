@@ -166,6 +166,14 @@ describe('autopolyfiller', function () {
             expect(polyfills).to.eql(['String.prototype.trim']);
         });
 
+        it('accepts wildcards', function () {
+            var polyfills = autopolyfiller()
+                .include(['Array.*'])
+                .polyfills;
+
+            expect(polyfills.length).to.be.above(0);
+        });
+
     });
 
     describe('.exclude', function () {
