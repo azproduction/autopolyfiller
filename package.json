@@ -56,6 +56,11 @@
   "bin": {
     "autopolyfiller": "./bin/autopolyfiller"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "index.js"
+  ],
   "scripts": {
     "test": "jshint . && jscs . && mocha -R spec",
     "coverage": "istanbul cover node_modules/.bin/_mocha --report html -- -R spec",
