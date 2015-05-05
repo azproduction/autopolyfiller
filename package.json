@@ -62,7 +62,7 @@
     "index.js"
   ],
   "scripts": {
-    "test": "jshint . && jscs . && mocha -R spec",
+    "test": "jshint . && mocha -R spec",
     "coverage": "istanbul cover node_modules/.bin/_mocha --report html -- -R spec",
     "coverage_push": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && cat ./coverage/lcov.info | codeclimate || true",
     "precommit": "npm test",
