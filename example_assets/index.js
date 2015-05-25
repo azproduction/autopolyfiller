@@ -5,10 +5,10 @@ function $(sel) {
 }
 
 setTimeout(function () {
-    var $code = $('#code'),
-        $browsers = $('#browsers'),
-        $polyfills = $('#polyfills'),
-        $generateButton = $('#generate');
+    var $code = $('#code');
+    var $browsers = $('#browsers');
+    var $polyfills = $('#polyfills');
+    var $generateButton = $('#generate');
 
     function generate() {
         console.time('Scan for polyfills');

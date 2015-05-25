@@ -1,8 +1,8 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var code = require('../lib/polyfill-code'),
-    expect = require('chai').expect;
+var code = require('../lib/polyfill-code');
+var expect = require('chai').expect;
 
 describe('polyfill-code', function () {
 
@@ -26,7 +26,7 @@ describe('polyfill-code', function () {
             var polyfillCode = '__MyPolyfill = function () {}';
 
             code.addSource({
-                '__MyPolyfill': polyfillCode
+                __MyPolyfill: polyfillCode
             });
 
             expect(code('__MyPolyfill')).to.eql(polyfillCode);

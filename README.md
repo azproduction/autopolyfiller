@@ -22,7 +22,7 @@ It will not work if:
  * You are `eval`ing code with polyfills. Eg `eval('Object.keys(this)')`
  * You are doing something odd. Eg `Object['k' + 'eys']()`
 
-## Installation 
+## Installation
 
 `autopolyfiller` can be installed using `npm`:
 
@@ -92,6 +92,8 @@ var autopolyfiller = require('autopolyfiller');
 autopolyfiller()
 .exclude(['Promise'])
 .include(['String.prototype.trim'])
+// All Array polyfills
+.include(['Array.*'])
 .add('new My.Promise();')
 .polyfills;
 // ['String.prototype.trim']
@@ -121,12 +123,12 @@ autopolyfiller.use({
     test: function (ast) {
         return query('Object.newFeature(_$)', ast).length > 0 ? ['Object.newFeature'] : [];
     },
-    
+
     // Your polyfills code
     polyfill: {
         'Object.newFeature': 'Object.newFeature = function () {};'
     },
-    
+
     // This list means "apply this feature to the <list of browsers>"
     // For more examples see https://github.com/jonathantneal/polyfill/blob/master/agent.js.json
     support: {
@@ -136,7 +138,7 @@ autopolyfiller.use({
             fill: 'Object.newFeature'
         }]
     },
-    
+
     // This is optional. By default autopolyfiller will use
     // polyfill's name to generate condition's code:
     wrapper: {

@@ -1,0 +1,11 @@
+{
+    "preset": "yandex",
+    "excludeFiles": [
+        ".git/**",
+        "node_modules/**",
+        "coverage/**",
+        "benchmark/scan/assets/**",
+        "example_assets/index.browserify.js",
+        "test/fixtures/**"
+    ]
+}
