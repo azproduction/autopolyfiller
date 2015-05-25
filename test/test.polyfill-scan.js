@@ -1,10 +1,10 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var scan = require('../lib/polyfill-scan'),
-    mockParser = require('./fixtures/parser'),
-    astQuery = require('grasp-equery').query,
-    expect = require('chai').expect;
+var scan = require('../lib/polyfill-scan');
+var mockParser = require('./fixtures/parser');
+var astQuery = require('grasp-equery').query;
+var expect = require('chai').expect;
 
 describe('polyfill-scan', function () {
     /* jshint maxstatements: 20 */

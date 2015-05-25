@@ -1,9 +1,9 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var autopolyfiller = require('..'),
-    astQuery = require('grasp-equery').query,
-    expect = require('chai').expect;
+var autopolyfiller = require('..');
+var astQuery = require('grasp-equery').query;
+var expect = require('chai').expect;
 
 var reLocalPolyfills = /^__/;
 
@@ -47,9 +47,9 @@ describe('autopolyfiller', function () {
                     return astQuery('__.recursively(_$)', ast).length ? ['PewPew.prototype.recursively'] : [];
                 },
                 support: {
-                    'Opera': [{
-                        'only': '11.5',
-                        'fill': 'PewPew.prototype.recursively'
+                    Opera: [{
+                        only: '11.5',
+                        fill: 'PewPew.prototype.recursively'
                     }]
                 },
                 polyfill: {
@@ -62,7 +62,11 @@ describe('autopolyfiller', function () {
             });
             var polyfills = autopolyfiller('Opera 11.5').add('"".recursively();').polyfills;
 
-            expect(polyfills).to.eql(['PewPew.prototype.recursively', 'Object.defineProperties', 'Object.defineProperty']);
+            expect(polyfills).to.eql([
+                'PewPew.prototype.recursively',
+                'Object.defineProperties',
+                'Object.defineProperty'
+            ]);
         });
     });
 
@@ -74,9 +78,9 @@ describe('autopolyfiller', function () {
                     return astQuery('__.ololo(_$)', ast).length ? ['PewPew.prototype.ololo'] : [];
                 },
                 support: {
-                    'Chrome': [{
-                        'only': '19',
-                        'fill': 'PewPew.prototype.ololo'
+                    Chrome: [{
+                        only: '19',
+                        fill: 'PewPew.prototype.ololo'
                     }]
                 },
                 polyfill: {
@@ -84,8 +88,8 @@ describe('autopolyfiller', function () {
                 },
                 wrapper: {
                     'PewPew.prototype.ololo': {
-                        'before': 'if (!PewPew.prototype.ololo) {',
-                        'after': '}'
+                        before: 'if (!PewPew.prototype.ololo) {',
+                        after: '}'
                     }
                 }
             });
@@ -111,9 +115,9 @@ describe('autopolyfiller', function () {
                     return astQuery('__.test(_$)', ast).length ? ['PewPew.prototype.test'] : [];
                 },
                 support: {
-                    'Chrome': [{
-                        'only': '19',
-                        'fill': 'PewPew.prototype.test'
+                    Chrome: [{
+                        only: '19',
+                        fill: 'PewPew.prototype.test'
                     }]
                 },
                 polyfill: {
@@ -164,6 +168,14 @@ describe('autopolyfiller', function () {
                 .polyfills;
 
             expect(polyfills).to.eql(['String.prototype.trim']);
+        });
+
+        it('accepts wildcards', function () {
+            var polyfills = autopolyfiller()
+                .include(['Array.*'])
+                .polyfills;
+
+            expect(polyfills.length).to.be.above(0);
         });
 
     });

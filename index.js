@@ -1,11 +1,12 @@
-var acorn = require('acorn'),
-    assert = require('assert'),
-    scan = require('./lib/polyfill-scan'),
-    reduce = require('./lib/polyfill-reduce'),
-    wrap = require('./lib/polyfill-wrap'),
-    code = require('./lib/polyfill-code');
-
+var acorn = require('acorn');
+var assert = require('assert');
+var scan = require('./lib/polyfill-scan');
+var reduce = require('./lib/polyfill-reduce');
+var wrap = require('./lib/polyfill-wrap');
+var minimatch = require('minimatch');
+var code = require('./lib/polyfill-code');
 var stablePolyfills = require('autopolyfiller-stable');
+var polyfillNames = Object.keys(stablePolyfills.polyfill);
 
 /**
  *
@@ -82,8 +83,8 @@ AutoPolyFiller.prototype = {
      * @returns {AutoPolyFiller}
      */
     add: function (code) {
-        var polyfills = this._scan(code),
-            polyfillsOfPolyfills = this._scanForPolyfillsOfPolyfills(polyfills);
+        var polyfills = this._scan(code);
+        var polyfillsOfPolyfills = this._scanForPolyfillsOfPolyfills(polyfills);
 
         this.include(polyfills.concat(polyfillsOfPolyfills));
 
@@ -121,6 +122,20 @@ AutoPolyFiller.prototype = {
     include: function (polyfills) {
         this.polyfills = this.polyfills
             .concat(polyfills)
+
+            // If any of the patterns contain '*', add all of the matching
+            // polyfills
+            .reduce(function (polyfills, polyfill) {
+                if (polyfill.indexOf('*') > -1) {
+                    var matches = polyfillNames.filter(function (name) {
+                        return minimatch(name, polyfill);
+                    });
+                    return polyfills.concat(matches);
+                }
+                polyfills.push(polyfill);
+
+                return polyfills;
+            }, [])
 
             // Filter ignored polyfills
             .filter(this._isPolyfillIncluded.bind(this))
@@ -184,7 +199,7 @@ AutoPolyFiller.prototype = {
  * // ['Promise']
  */
 function create() {
-    var browsers = 1 <= arguments.length ? [].slice.call(arguments, 0) : [];
+    var browsers = arguments.length >= 1 ? [].slice.call(arguments, 0) : [];
 
     if (browsers.length === 1 && browsers[0] instanceof Array) {
         browsers = browsers[0];

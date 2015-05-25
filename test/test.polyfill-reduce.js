@@ -1,9 +1,9 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true*/
 
-var reduce = require('../lib/polyfill-reduce'),
-    browserslist = require('browserslist'),
-    expect = require('chai').expect;
+var reduce = require('../lib/polyfill-reduce');
+var browserslist = require('browserslist');
+var expect = require('chai').expect;
 
 describe('polyfill-reduce', function () {
 
@@ -46,9 +46,9 @@ describe('polyfill-reduce', function () {
 
         it('uses custom supports', function () {
             reduce.support({
-                "Chrome": [{
-                    "only": "29",
-                    "fill": "__PewpewOlolo"
+                Chrome: [{
+                    only: '29',
+                    fill: '__PewpewOlolo'
                 }]
             });
             var polyfills = reduce(['__PewpewOlolo'], ['Chrome 30']);
@@ -57,9 +57,9 @@ describe('polyfill-reduce', function () {
 
         it('can define new browsers', function () {
             reduce.support({
-                "ChromePewpew": [{
-                    "only": "29",
-                    "fill": "__PewpewOlolo"
+                ChromePewpew: [{
+                    only: '29',
+                    fill: '__PewpewOlolo'
                 }]
             });
         });

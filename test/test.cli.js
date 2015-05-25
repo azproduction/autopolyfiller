@@ -1,21 +1,21 @@
 /*global describe, it, beforeEach, afterEach*/
 /*jshint expr:true, maxstatements:50*/
 
-var join = require('path').join,
-    fs = require('fs'),
-    stream = require('mock-utf8-stream'),
-    cliJs = join(__dirname, '..', 'lib', 'cli.js'),
-    cliBin = join(__dirname, '..', 'bin', 'autopolyfiller'),
-    AutoPolyFillerCli = require(cliJs),
-    expect = require('chai').expect;
+var join = require('path').join;
+var fs = require('fs');
+var stream = require('mock-utf8-stream');
+var cliJs = join(__dirname, '..', 'lib', 'cli.js');
+var cliBin = join(__dirname, '..', 'bin', 'autopolyfiller');
+var AutoPolyFillerCli = require(cliJs);
+var expect = require('chai').expect;
 
 var TEMPORARY_FILE = join(__dirname, 'fixtures/cli/tmp/pf.js');
 
 describe('cli', function () {
-    var stdout,
-        stdin,
-        stderr,
-        exit;
+    var stdout;
+    var stdin;
+    var stderr;
+    var exit;
 
     beforeEach(function () {
         stdout = new stream.MockWritableStream();
