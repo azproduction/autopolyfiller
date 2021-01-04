@@ -1,3 +1,9 @@
+⚠️ This repo is no longer maintained. 
+
+As replacement use https://github.com/zloirock/core-js
+
+----
+
 # Autopolyfiller — Precise polyfills
 
 [![NPM Version](https://img.shields.io/npm/v/autopolyfiller.svg)](https://npmjs.org/package/autopolyfiller) [![Build Status](https://img.shields.io/travis/azproduction/autopolyfiller.svg)](https://travis-ci.org/azproduction/autopolyfiller) [![Coverage Status](https://img.shields.io/coveralls/azproduction/autopolyfiller.svg)](https://coveralls.io/r/azproduction/autopolyfiller) [![Code Climate](https://img.shields.io/codeclimate/github/azproduction/autopolyfiller.svg)](https://codeclimate.com/github/azproduction/autopolyfiller) [![Dependency Status](https://img.shields.io/gemnasium/azproduction/autopolyfiller.svg)](https://gemnasium.com/azproduction/autopolyfiller)
